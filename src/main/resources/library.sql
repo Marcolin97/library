@@ -7,7 +7,8 @@ CREATE TABLE authors (
     author_id INT PRIMARY KEY,
     author_name VARCHAR(255) NOT NULL,
     birthdate DATE,
-    nationality VARCHAR(50)
+    nationality VARCHAR(50),
+    info VARCHAR(250)
 );
 
 -- Creazione della tabella "genres"
@@ -23,6 +24,31 @@ CREATE TABLE books (
     author_id INT,
     publication_year INT,
     genre_id INT,
+    editor VARCHAR(100),
+    publisher VARCHAR(100),
+    pages INT,
+    description VARCHAR(250),
+    feedback_id INT,
+    price INT,
     FOREIGN KEY (author_id) REFERENCES authors(author_id),
     FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
+);
+
+-- Creazione della tabella "feedback"
+CREATE TABLE feedback (
+    feedback_id INT PRIMARY KEY,
+    comment VARCHAR(250),
+    rating INT,
+    publication_date INT
+);
+
+-- Creazione della tabella "customers"
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    nickname_login VARCHAR(100),
+    password VARCHAR(100),
+    email VARCHAR(100),
+    phone INT,
+    address VARCHAR(150)
 );

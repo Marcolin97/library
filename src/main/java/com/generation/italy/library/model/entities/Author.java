@@ -17,6 +17,18 @@ public class Author {
     private LocalDate birthdate;
     @Column(name = "nationality")
     private String nationality;
+    @Column(name = "info")
+    private String info;
+
+    public Author() {}
+
+    public Author(Long id, String name, LocalDate birthdate, String nationality, String info) {
+        this.id = id;
+        this.name = name;
+        this.birthdate = birthdate;
+        this.nationality = nationality;
+        this.info = info;
+    }
 
     public Long getId() {
         return id;
@@ -48,5 +60,13 @@ public class Author {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }
