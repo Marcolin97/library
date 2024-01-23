@@ -22,6 +22,16 @@ public class Books {
     @JoinColumn(name = "genre_id", nullable = false)
     private Genres genres;
 
+    public Books() {}
+
+    public Books(Long id, String title, LocalDate publicationYear, Author author, Genres genres) {
+        this.id = id;
+        this.title = title;
+        this.publicationYear = publicationYear;
+        this.author = author;
+        this.genres = genres;
+    }
+
     public Long getId() {
         return id;
     }

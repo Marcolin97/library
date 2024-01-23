@@ -18,6 +18,15 @@ public class Author {
     @Column(name = "nationality")
     private String nationality;
 
+    public Author() {}
+
+    public Author(Long id, String name, LocalDate birthdate, String nationality) {
+        this.id = id;
+        this.name = name;
+        this.birthdate = birthdate;
+        this.nationality = nationality;
+    }
+
     public Long getId() {
         return id;
     }
