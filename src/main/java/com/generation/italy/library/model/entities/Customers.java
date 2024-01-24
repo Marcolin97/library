@@ -22,21 +22,17 @@ public class Customers {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
-    private long phone;
-
     @Column(name = "address")
     private String address;
 
     public  Customers() {}
 
-    public Customers(Long id, String name, String nickname, String password, String email, long phone, String address) {
+    public Customers(Long id, String name, String nickname, String password, String email, String address) {
         Id = id;
         Name = name;
         this.nickname = nickname;
         this.password = password;
         this.email = email;
-        this.phone = phone;
         this.address = address;
     }
 
@@ -78,14 +74,6 @@ public class Customers {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public long getPhone() {
-        return phone;
-    }
-
-    public void setPhone(long phone) {
-        this.phone = phone;
     }
 
     public String getAddress() {
