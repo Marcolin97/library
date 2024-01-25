@@ -1,9 +1,17 @@
 package com.generation.italy.library;
 
+import com.generation.italy.library.model.services.implementations.AuthenticationService;
+import lombok.Builder;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+
+import com.generation.italy.library.model.services.implementations.RegisterRequest;
+
+
+
 
 @SpringBootApplication
 public class LibraryApplication {
@@ -13,6 +21,8 @@ public class LibraryApplication {
 	}
 
 	@Bean
+
+
 	public CommandLineRunner commandLineRunner(
 			AuthenticationService service
 	) {
@@ -22,7 +32,7 @@ public class LibraryApplication {
 					.lastname("Admin")
 					.email("admin@mail.com")
 					.password("password")
-					.role(ADMIN)
+					.role("ADMIN")
 					.build();
 			System.out.println("Admin token: " + service.register(admin).getAccessToken());
 
@@ -31,7 +41,7 @@ public class LibraryApplication {
 					.lastname("Admin")
 					.email("manager@mail.com")
 					.password("password")
-					.role(MANAGER)
+					.role("MANAGER")
 					.build();
 			System.out.println("Manager token: " + service.register(manager).getAccessToken());
 

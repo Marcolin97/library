@@ -21,15 +21,19 @@ public class Books {
     @ManyToOne
     @JoinColumn(name = "genre_id", nullable = false)
     private Genres genres;
+    @Column(name = "available")
+    private boolean available;
+
 
     public Books() {}
 
-    public Books(Long id, String title, LocalDate publicationYear, Author author, Genres genres) {
+    public Books(Long id, String title, LocalDate publicationYear, Author author, Genres genres, boolean available) {
         this.id = id;
         this.title = title;
         this.publicationYear = publicationYear;
         this.author = author;
         this.genres = genres;
+        this.available = available;
     }
 
     public Long getId() {
@@ -71,4 +75,12 @@ public class Books {
     public void setGenres(Genres genres) {
         this.genres = genres;
     }
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
 }
