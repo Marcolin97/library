@@ -41,10 +41,11 @@ CREATE TABLE feedback (
     publication_date BIGINT
 );
 
--- Creazione della tabella "customers"
-CREATE TABLE customers (
-    customer_id BIGINT PRIMARY KEY,
-    customer_name VARCHAR(100),
+-- Creazione della tabella "user"
+CREATE TABLE user (
+    user_id BIGINT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
     nickname_login VARCHAR(100),
     password VARCHAR(100),
     email VARCHAR(100),
