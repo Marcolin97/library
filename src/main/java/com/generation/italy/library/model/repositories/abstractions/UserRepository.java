@@ -1,6 +1,6 @@
 package com.generation.italy.library.model.repositories.abstractions;
 
-import org.apache.catalina.User;
+import com.generation.italy.library.model.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

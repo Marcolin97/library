@@ -1,5 +1,6 @@
 package com.generation.italy.library.dtos;
 
+import com.generation.italy.library.model.entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

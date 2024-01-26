@@ -1,9 +1,17 @@
 package com.generation.italy.library;
 
+import com.generation.italy.library.dtos.RegisterDto;
+import com.generation.italy.library.model.services.implementations.AuthenticationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+
+
+import static com.generation.italy.library.model.entities.Role.ADMIN;
+import static com.generation.italy.library.model.entities.Role.MANAGER;
+
 
 @SpringBootApplication
 public class LibraryApplication {
@@ -17,7 +25,7 @@ public class LibraryApplication {
 			AuthenticationService service
 	) {
 		return args -> {
-			var admin = RegisterRequest.builder()
+			var admin = RegisterDto.builder()
 					.firstname("Admin")
 					.lastname("Admin")
 					.email("admin@mail.com")
@@ -26,7 +34,7 @@ public class LibraryApplication {
 					.build();
 			System.out.println("Admin token: " + service.register(admin).getAccessToken());
 
-			var manager = RegisterRequest.builder()
+			var manager = RegisterDto.builder()
 					.firstname("Admin")
 					.lastname("Admin")
 					.email("manager@mail.com")
@@ -34,13 +42,16 @@ public class LibraryApplication {
 					.role(MANAGER)
 					.build();
 			System.out.println("Manager token: " + service.register(manager).getAccessToken());
-
-
-
-
-
-
-
-
-
+		};
+	}
 }
+
+
+
+
+
+
+
+
+
+
