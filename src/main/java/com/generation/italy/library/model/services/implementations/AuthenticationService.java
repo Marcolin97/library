@@ -2,6 +2,7 @@ package com.generation.italy.library.model.services.implementations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.generation.italy.library.dtos.AuthenticationDto;
+import com.generation.italy.library.dtos.AuthenticationRequestDto;
 import com.generation.italy.library.dtos.RegisterDto;
 import com.generation.italy.library.model.entities.Token;
 import com.generation.italy.library.model.entities.TokenType;
@@ -46,7 +47,7 @@ public class AuthenticationService {
                 .refreshToken(refreshToken)
                 .build();
     }
-    public AuthenticationDto authenticate(AuthenticationDto request){
+    public AuthenticationRequestDto authenticate(AuthenticationRequestDto request){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
