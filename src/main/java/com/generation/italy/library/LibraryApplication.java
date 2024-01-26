@@ -1,6 +1,6 @@
 package com.generation.italy.library;
 
-import com.generation.italy.library.dtos.RegisterDto;
+import com.generation.italy.library.dtos.RegisterRequestDto;
 import com.generation.italy.library.model.services.implementations.AuthenticationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +25,7 @@ public class LibraryApplication {
 			AuthenticationService service
 	) {
 		return args -> {
-			var admin = RegisterDto.builder()
+			var admin = RegisterRequestDto.builder()
 					.firstname("Admin")
 					.lastname("Admin")
 					.email("admin@mail.com")
@@ -34,7 +34,7 @@ public class LibraryApplication {
 					.build();
 			System.out.println("Admin token: " + service.register(admin).getAccessToken());
 
-			var manager = RegisterDto.builder()
+			var manager = RegisterRequestDto.builder()
 					.firstname("Admin")
 					.lastname("Admin")
 					.email("manager@mail.com")

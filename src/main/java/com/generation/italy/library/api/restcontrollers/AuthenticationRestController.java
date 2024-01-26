@@ -2,6 +2,7 @@ package com.generation.italy.library.api.restcontrollers;
 
 import com.generation.italy.library.dtos.AuthenticationRequestDto;
 import com.generation.italy.library.dtos.AuthenticationResponseDto;
+import com.generation.italy.library.dtos.RegisterRequestDto;
 import com.generation.italy.library.model.services.implementations.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ public class AuthenticationRestController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponseDto> register(
-            @RequestBody RegisterRequest request
+            @RequestBody RegisterRequestDto request
     ) {
         return ResponseEntity.ok(service.register(request));
     }
