@@ -51,6 +51,16 @@ public class Books {
         this.description = description;
     }
 
+    public Books() {}
+
+    public Books(Long id, String title, LocalDate publicationYear, Author author, Genres genres) {
+        this.id = id;
+        this.title = title;
+        this.publicationYear = publicationYear;
+        this.author = author;
+        this.genres = genres;
+    }
+
     public Long getId() {
         return id;
     }

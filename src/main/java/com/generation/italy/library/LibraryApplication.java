@@ -1,18 +1,19 @@
 package com.generation.italy.library;
 
-import com.generation.italy.library.dtos.RegisterDto;
+import com.generation.italy.library.dtos.RegisterRequestDto;
 import com.generation.italy.library.model.services.implementations.AuthenticationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+
 
 import static com.generation.italy.library.model.entities.Role.ADMIN;
 import static com.generation.italy.library.model.entities.Role.MANAGER;
 
+
 @SpringBootApplication
-@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class LibraryApplication {
 
 	public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class LibraryApplication {
 			AuthenticationService service
 	) {
 		return args -> {
-			var admin = RegisterDto.builder()
+			var admin = RegisterRequestDto.builder()
 					.firstname("Admin")
 					.lastname("Admin")
 					.email("admin@mail.com")
@@ -33,7 +34,7 @@ public class LibraryApplication {
 					.build();
 			System.out.println("Admin token: " + service.register(admin).getAccessToken());
 
-			var manager = RegisterDto.builder()
+			var manager = RegisterRequestDto.builder()
 					.firstname("Admin")
 					.lastname("Admin")
 					.email("manager@mail.com")
@@ -41,7 +42,16 @@ public class LibraryApplication {
 					.role(MANAGER)
 					.build();
 			System.out.println("Manager token: " + service.register(manager).getAccessToken());
-
 		};
 	}
 }
+
+
+
+
+
+
+
+
+
+

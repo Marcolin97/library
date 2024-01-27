@@ -12,6 +12,13 @@ public class Genres {
     @Column(name = "genre_name")
     private String genre;
 
+    public Genres() {}
+
+    public Genres(Long id, String genre) {
+        this.id = id;
+        this.genre = genre;
+    }
+
     public Long getId() {
         return id;
     }

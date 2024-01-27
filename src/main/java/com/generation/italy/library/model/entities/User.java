@@ -1,5 +1,6 @@
 package com.generation.italy.library.model.entities;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

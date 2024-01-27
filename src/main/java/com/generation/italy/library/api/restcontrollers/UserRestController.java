@@ -1,23 +1,29 @@
 package com.generation.italy.library.api.restcontrollers;
 
-import com.generation.italy.library.model.entities.User;
-import com.generation.italy.library.model.services.implementations.LibraryService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.generation.italy.library.dtos.ChangePasswordRequestDto;
+import com.generation.italy.library.model.services.implementations.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.security.Principal;
 
 @RestController
-@RequestMapping("/api/User")
-@CrossOrigin
+@RequestMapping("/api/v1/users")
+@RequiredArgsConstructor
 public class UserRestController {
-    LibraryService libraryService;
-    @Autowired
-    UserRestController(LibraryService libraryService){
-        this.libraryService = libraryService;
-    }
-    @GetMapping("/")
-    public List<User> getAllUser() {
-        return libraryService.getAllUser();
+
+    private final UserService service;
+
+    @PatchMapping
+    public ResponseEntity<?> changePassword(
+            @RequestBody ChangePasswordRequestDto request,
+            Principal connectedUser
+    ) {
+        service.changePassword(request, connectedUser);
+        return ResponseEntity.ok().build();
     }
 }
