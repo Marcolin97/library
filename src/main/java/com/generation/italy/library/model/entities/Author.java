@@ -30,15 +30,6 @@ public class Author {
         this.info = info;
     }
 
-    public Author() {}
-
-    public Author(Long id, String name, LocalDate birthdate, String nationality) {
-        this.id = id;
-        this.name = name;
-        this.birthdate = birthdate;
-        this.nationality = nationality;
-    }
-
     public Long getId() {
         return id;
     }

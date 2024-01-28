@@ -3,16 +3,28 @@ spring:
     url: jdbc:postgresql://localhost:5432/library
     username: postgresMaster
     password: goPostgresGo
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver  #?
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    show-sql: false
+      ddl-auto: create-drop #none
+    show-sql: false #true
     properties:
       hibernate:
-        format_sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true  #?
+    database: postgresql  #?
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  #dialect:...
+
+  #logging:
+    #level:
+      #root: WARN
+
+  #spring:
+    #main:
+      #banner-mode: off
+
+  # spring:
+  #   profiles:
+  #     active: hibernate
 
 application:
   security:

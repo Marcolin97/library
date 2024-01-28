@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 
 import static com.generation.italy.library.model.entities.Role.ADMIN;
@@ -14,6 +14,7 @@ import static com.generation.italy.library.model.entities.Role.MANAGER;
 
 
 @SpringBootApplication
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class LibraryApplication {
 
 	public static void main(String[] args) {
