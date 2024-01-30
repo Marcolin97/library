@@ -14,7 +14,7 @@ CREATE TABLE authors (
 -- Creazione della tabella "genres"
 CREATE TABLE genres (
     genre_id BIGINT PRIMARY KEY,
-    genre_name VARCHAR(100) NOT NULL --cambiare?
+    genre_name VARCHAR(100) NOT NULL
 );
 
 -- Creazione della tabella "books"
@@ -28,27 +28,25 @@ CREATE TABLE books (
     publisher VARCHAR(100),
     pages BIGINT,
     description VARCHAR(250),
-    feedback_id BIGINT, --foreign mettere
+    feedback_id BIGINT,
     FOREIGN KEY (author_id) REFERENCES authors(author_id),
-    FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
+    FOREIGN KEY (genre_id) REFERENCES genres(genre_id),
+    FOREIGN KEY (feedback_id) REFERENCES feedback(feedback_id)
 );
 
 -- Creazione della tabella "feedback"
 CREATE TABLE feedback (
-    feedback_id BIGINT PRIMARY KEY, --foreign mettere
+    feedback_id BIGINT PRIMARY KEY,
     comment VARCHAR(250),
     rating BIGINT,
-    publication_date BIGINT
+    publication_date DATE
 );
 
--- Creazione della tabella "user"
-CREATE TABLE user (
-    user_id BIGINT PRIMARY KEY,
-    first_name VARCHAR(100),
-    last_name VARCHAR(100),
-    nickname_login VARCHAR(100),
-    password VARCHAR(100),
-    email VARCHAR(100),
-    phone BIGINT,
-    address VARCHAR(150)
-);
+-- Ceazione della tabella "user_books"
+CREATE TABLE user_books (
+    assignment_id BIGINT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    book_id BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES _user(user_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+)

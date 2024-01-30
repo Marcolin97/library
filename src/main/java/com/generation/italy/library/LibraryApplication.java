@@ -14,7 +14,6 @@ import static com.generation.italy.library.model.entities.Role.MANAGER;
 
 
 @SpringBootApplication
-@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class LibraryApplication {
 
 	public static void main(String[] args) {

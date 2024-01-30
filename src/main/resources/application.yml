@@ -6,25 +6,13 @@ spring:
     driver-class-name: org.postgresql.Driver  #?
   jpa:
     hibernate:
-      ddl-auto: create-drop #none
+      ddl-auto: none
     show-sql: false #true
     properties:
       hibernate:
         format_sql: true  #?
     database: postgresql  #?
     database-platform: org.hibernate.dialect.PostgreSQLDialect  #dialect:...
-
-  #logging:
-    #level:
-      #root: WARN
-
-  #spring:
-    #main:
-      #banner-mode: off
-
-  # spring:
-  #   profiles:
-  #     active: hibernate
 
 application:
   security:
