@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Table(name = "books")
 public class Books {
     @Id
-    @Column(name = "book_id")
+    @Column(name = "book_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.generation.italy.library.configuration;
 
+import com.generation.italy.library.model.entities.Role;
 import com.generation.italy.library.model.repositories.abstractions.TokenRepository;
 import com.generation.italy.library.model.services.implementations.JwtService;
 import jakarta.servlet.FilterChain;
@@ -51,15 +52,18 @@ public class JwtAuthenticationFilterConfig extends OncePerRequestFilter {
                     .map(t -> !t.isExpired() && !t.isRevoked())
                     .orElse(false);
             if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
-                );
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+                if (userDetails.getAuthorities().stream().anyMatch(authority ->
+                        authority.getAuthority().equals("ROLE_" + Role.ADMIN.name()))) {
+                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                            userDetails,
+                            null,
+                            userDetails.getAuthorities()
+                    );
+                    authToken.setDetails(
+                            new WebAuthenticationDetailsSource().buildDetails(request)
+                    );
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
             }
         }
         filterChain.doFilter(request, response);

@@ -1,4 +1,3 @@
--- Inserimento di dati nella tabella authors
 INSERT INTO authors (author_id, author_name, birthdate, nationality, info)
 VALUES
 (1, 'Jane Austen', '1775-12-16', 'British', 'Renowned English novelist'),
@@ -10,7 +9,6 @@ VALUES
 CREATE TYPE public.role AS ENUM (
     'ADMIN',
     'USER',
-	'MANAGER'
 );
 
 ALTER TYPE public.role OWNER TO "postgresMaster";

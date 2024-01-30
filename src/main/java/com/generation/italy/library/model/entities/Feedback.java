@@ -16,14 +16,14 @@ public class Feedback {
     private String comment;
 
     @Column(name = "rating")
-    private int rating;
+    private Long rating;
 
     @Column(name = "publication_date")
     private LocalDate publication;
 
     public Feedback() {}
 
-    public Feedback(long id, String comment, int rating, LocalDate publication) {
+    public Feedback(long id, String comment, Long rating, LocalDate publication) {
         this.id = id;
         this.comment = comment;
         this.rating = rating;
@@ -46,11 +46,11 @@ public class Feedback {
         this.comment = comment;
     }
 
-    public int getRating() {
+    public Long getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Long rating) {
         this.rating = rating;
     }
 
