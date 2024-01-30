@@ -42,6 +42,7 @@ public class LibraryApplication {
 					.role(MANAGER)
 					.build();
 			System.out.println("Manager token: " + service.register(manager).getAccessToken());
+			System.out.println("jesus");
 		};
 	}
 }
