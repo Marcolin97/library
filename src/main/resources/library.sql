@@ -111,3 +111,55 @@ CREATE TABLE user_books (
     FOREIGN KEY (book_id) REFERENCES books(book_id)
 )
 
+
+
+
+
+-- Authors Table
+INSERT INTO public.authors (birthdate, author_id, first_name, info, last_name, nationality)
+VALUES
+    ('1980-05-15', 1, 'John', 'Bestselling author known for mystery novels', 'Doe', 'American'),
+    ('1975-08-22', 2, 'Jane', 'Renowned poet and essayist', 'Smith', 'British'),
+    ('1990-03-10', 3, 'Michael', 'Science fiction writer with a focus on artificial intelligence', 'Johnson', 'Canadian'),
+    ('1985-11-05', 4, 'Emily', 'Historical fiction author specializing in medieval settings', 'Brown', 'Australian'),
+    ('1972-07-18', 5, 'Carlos', 'Author of contemporary novels exploring cultural diversity', 'Rodriguez', 'Spanish');
+INSERT INTO public.feedback (publication_date, feedback_id, rating, comment)
+VALUES
+    ('2022-01-31', 1, 5, 'Excellent read, couldn\t put it down!'),
+    ('2022-02-15', 2, 4, 'Poetry that speaks to the heart'),
+    ('2021-12-10', 3, 4, 'Mind-bending science fiction at its best'),
+    ('2023-03-05', 4, 5, 'Captivating journey through history'),
+    ('2023-06-20', 5, 4, 'Kept me on the edge of my seat from start to finish');
+
+-- Books Table
+INSERT INTO public.books (publication_year, book_id, feedback_id, genre_id, pages, price, description, editor, publisher, title)
+VALUES
+    ('2022-01-31', 1, 1, 1, 300, 25, 'Exciting mystery novel', 'ABC Editors', 'XYZ Publishers', 'The Mysterious Case'),
+    ('2022-02-15', 2, 2, 2, 200, 20, 'Beautiful collection of poems', 'DEF Editors', 'LMN Publishers', 'Expressions of the Soul'),
+    ('2021-12-10', 3, 3, 3, 400, 30, 'Thrilling science fiction adventure', 'GHI Editors', 'OPQ Publishers', 'The Quantum Odyssey'),
+    ('2023-03-05', 4, 4, 4, 350, 28, 'Compelling historical fiction journey', 'JKL Editors', 'RST Publishers', 'Echoes of the Past'),
+    ('2023-06-20', 5, 5, 1, 250, 22, 'Intriguing mystery thriller', 'UVW Editors', 'XYZ Publishers', 'Shadows in the Dark');
+
+-- Books_Authors Table
+INSERT INTO public.books_authors (authors_author_id, book_book_id)
+VALUES
+    (1, 1),
+    (2, 1),
+    (3, 2),
+    (4, 3),
+    (5, 4);
+
+
+
+-- Genres Table
+INSERT INTO public.genres (genre_id, genre_name)
+VALUES
+    (1, 'Mystery'),
+    (2, 'Poetry'),
+    (3, 'Science Fiction'),
+    (4, 'Historical Fiction'),
+    (5, 'Thriller');
+
+
+
+--insert da mettere nel giusto ordine
