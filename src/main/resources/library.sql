@@ -1,14 +1,42 @@
-INSERT INTO authors (author_id, author_name, birthdate, nationality, info)
+-- Inserimento dati nella tabella "authors"
+INSERT INTO authors (author_name, birthdate, nationality, info)
 VALUES
-(1, 'Jane Austen', '1775-12-16', 'British', 'Renowned English novelist'),
-(2, 'Fyodor Dostoevsky', '1821-11-11', 'Russian', 'Russian novelist and philosopher'),
-(3, 'Gabriel Garcia Marquez', '1927-03-06', 'Colombian', 'Nobel Prize-winning Colombian author'),
-(4, 'Haruki Murakami', '1949-01-12', 'Japanese', 'Contemporary Japanese writer'),
-(5, 'Chimamanda Ngozi Adichie', '1977-09-15', 'Nigerian', 'Nigerian author and speaker');
+    ('J.R.R. Tolkien', '1892-01-03', 'British', 'Author of fantasy literature'),
+    ('George Orwell', '1903-06-25', 'British', 'Author and journalist'),
+    ('Jane Austen', '1775-12-16', 'British', 'Novelist known for her romantic fiction'),
+    ('Umberto Eco', '1932-01-05', 'Italian', 'Philosopher, novelist, and literary critic'),
+    ('J.K. Rowling', '1965-07-31', 'British', 'Author and philanthropist');
+
+-- Inserimento dati nella tabella "genres"
+INSERT INTO genres (genre_name)
+VALUES
+    ('Epica fantasy'),
+    ('Distopia'),
+    ('Romanzo'),
+    ('Giallo storico'),
+    ('Fantasy');
+
+-- Inserimento dati nella tabella "feedback"
+INSERT INTO feedback (comment, rating, publication_date)
+VALUES
+    ('Molto appassionante!', 5, '2024-01-31'),
+    ('Interessante ma cupo', 4, '2024-01-31'),
+    ('Amo i romanzi di Jane Austen', 5, '2024-01-31'),
+    ('Intrigante e ben scritto', 4, '2024-01-31'),
+    ('Magia e avventura per tutte le età', 5, '2024-01-31');
+
+-- Inserimento di dati nella tabella "books"
+INSERT INTO books (title, author_id, publication_year, genre_id, editor, publisher, pages, description, feedback_id)
+VALUES
+    ('Il Signore degli Anelli', 1, '1954-01-01', 1, 'Mondadori', 'Bompiani', 1170, 'Epica fantasy di J.R.R. Tolkien', 1),
+    ('1984', 2, '1949-01-01', 2, 'Einaudi', 'Harvill Secker', 328, 'Distopia di George Orwell', 2),
+    ('Orgoglio e Pregiudizio', 3, '1813-01-01', 3, 'Newton Compton', 'Thomas Egerton', 432, 'Romanzo di Jane Austen', 3),
+    ('Il Nome della Rosa', 4, '1980-01-01', 4, 'Adelphi', 'Harcourt Brace Jovanovich', 503, 'Giallo storico di Umberto Eco', 4),
+    ('Harry Potter e la Pietra Filosofale', 5, '1997-01-01', 5, 'Salani', 'Bloomsbury', 332, 'Fantasy di J.K. Rowling', 5);
 
 CREATE TYPE public.role AS ENUM (
     'ADMIN',
-    'USER',
+    'USER'
 );
 
 ALTER TYPE public.role OWNER TO "postgresMaster";

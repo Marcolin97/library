@@ -4,34 +4,33 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_books")
-public class UserBooks {
+public class LibraryItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "assignment_id")
-    private Long assignmentId;
-
+    @Column(name = "id")
+    private Long Id;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
-    private Books book;
+    private Book book;
+    @Embedded
+    private BookMark bookMark;
+    public LibraryItem() {}
 
-    public UserBooks() {}
-
-    public UserBooks(Long assignmentId, User user, Books book) {
-        this.assignmentId = assignmentId;
+    public LibraryItem(Long Id, User user, Book book) {
+        this.Id = Id;
         this.user = user;
         this.book = book;
     }
 
     public Long getAssignmentId() {
-        return assignmentId;
+        return Id;
     }
 
     public void setAssignmentId(Long assignmentId) {
-        this.assignmentId = assignmentId;
+        this.Id = assignmentId;
     }
 
     public User getUser() {
@@ -42,11 +41,11 @@ public class UserBooks {
         this.user = user;
     }
 
-    public Books getBook() {
+    public Book getBook() {
         return book;
     }
 
-    public void setBook(Books book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 }

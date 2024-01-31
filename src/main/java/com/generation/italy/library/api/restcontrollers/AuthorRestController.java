@@ -1,12 +1,12 @@
 package com.generation.italy.library.api.restcontrollers;
 
 import com.generation.italy.library.model.entities.Author;
-import com.generation.italy.library.model.services.implementations.LibraryService;
+import com.generation.italy.library.model.entities.Book;
+import com.generation.italy.library.model.exceptions.NoSuchEntityException;
+import com.generation.italy.library.model.services.abstractions.AbstractLibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,14 +14,24 @@ import java.util.List;
 @RequestMapping("/api/authors")
 @CrossOrigin
 public class AuthorRestController {
-    LibraryService libraryService;
+    private AbstractLibraryService libraryService;
     @Autowired
-    AuthorRestController(LibraryService libraryService){
+    public AuthorRestController(AbstractLibraryService libraryService){
         this.libraryService = libraryService;
     }
     @GetMapping("/")
     public List<Author> getAllAuthors() {
         return libraryService.getAllAuthors();
+    }
+
+    @GetMapping("/{id}/books")
+    public ResponseEntity<?> getBooksByAuthorId(@PathVariable long id) {
+        try {
+            List<Book> result = libraryService.getBooksByAuthor(id);
+            return ResponseEntity.ok(result);
+        } catch (NoSuchEntityException e) {
+            return  ResponseEntity.notFound().build();
+        }
     }
 
 }

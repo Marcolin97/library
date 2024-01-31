@@ -3,20 +3,20 @@ package com.generation.italy.library.model.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "books")
-public class Books {
+public class Book {
     @Id
     @Column(name = "book_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
-    private Author author;
+    @ManyToMany
+    Set<Author> authors;
     @ManyToOne
     @JoinColumn(name = "genre_id", nullable = false)
-    private Genres genres;
+    private Genre genres;
     @ManyToOne
     @JoinColumn(name = "feedback_id", nullable = false)
     private Feedback feedback;
@@ -31,15 +31,15 @@ public class Books {
     @Column(name = "pages")
     private long  pages;
     @Column(name = "price")
-    private long price;
+    private Long price;
     @Column(name = "description")
     private String description;
 
-    public  Books() {}
+    public Book() {}
 
-    public Books(Long id, Author author, Genres genres, Feedback feedback, String title, LocalDate publicationYear, String editor, String publisher, long pages, long price, String description) {
+    public Book(Long id, Set<Author> authors, Genre genres, Feedback feedback, String title, LocalDate publicationYear, String editor, String publisher, long pages, long price, String description) {
         this.id = id;
-        this.author = author;
+        this.authors = authors;
         this.genres = genres;
         this.feedback = feedback;
         this.title = title;
@@ -59,19 +59,19 @@ public class Books {
         this.id = id;
     }
 
-    public Author getAuthor() {
-        return author;
+    public Set<Author> getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
 
-    public Genres getGenres() {
+    public Genre getGenres() {
         return genres;
     }
 
-    public void setGenres(Genres genres) {
+    public void setGenres(Genre genres) {
         this.genres = genres;
     }
 
@@ -123,11 +123,11 @@ public class Books {
         this.pages = pages;
     }
 
-    public long getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
