@@ -10,11 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/books")
 @CrossOrigin
-public class BooksRestController {
+public class BookRestController {
     LibraryService libraryService;
 
     @Autowired
-    BooksRestController(LibraryService libraryService) {
+    BookRestController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 

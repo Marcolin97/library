@@ -6,7 +6,7 @@ import com.generation.italy.library.model.entities.Genre;
 import com.generation.italy.library.model.entities.User;
 import com.generation.italy.library.model.exceptions.NoSuchEntityException;
 import com.generation.italy.library.model.repositories.abstractions.AuthorRepository;
-import com.generation.italy.library.model.repositories.abstractions.BooksRepository;
+import com.generation.italy.library.model.repositories.abstractions.BookRepository;
 import com.generation.italy.library.model.repositories.abstractions.UserRepository;
 import com.generation.italy.library.model.repositories.abstractions.GenreRepository;
 import com.generation.italy.library.model.services.abstractions.AbstractLibraryService;
@@ -19,13 +19,13 @@ import java.util.Optional;
 @Service
 public class LibraryService implements AbstractLibraryService {
     private AuthorRepository authorRepository;
-    private BooksRepository booksRepository;
+    private BookRepository booksRepository;
     private GenreRepository genreRepository;
     private UserRepository userRepository;
 
     @Autowired
     public LibraryService(AuthorRepository authorRepository,
-                          BooksRepository booksRepository,
+                          BookRepository booksRepository,
                           GenreRepository genreRepository,
                           UserRepository userRepository){
         this.authorRepository = authorRepository;

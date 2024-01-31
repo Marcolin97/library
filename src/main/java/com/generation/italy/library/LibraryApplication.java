@@ -1,6 +1,7 @@
 package com.generation.italy.library;
 
 import com.generation.italy.library.dtos.RegisterRequestDto;
+import com.generation.italy.library.model.entities.Role;
 import com.generation.italy.library.model.services.implementations.AuthenticationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,25 +15,22 @@ public class LibraryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
+		System.out.println("JESUS: Christian Andersen del vaffanculo un pò più in là");
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(
-			AuthenticationService service
-	) {
-		return args -> {
-			var admin = RegisterRequestDto.builder()
-					.firstname("Admin")
-					.lastname("Admin")
-					.email("admin@mail.com")
-					.password("password")
-					.role(ADMIN)
-					.build();
-			System.out.println("Admin token: " + service.register(admin).getAccessToken());
+//	@Bean
+//	public CommandLineRunner commandLineRunner(
+//			AuthenticationService service
+//	) {
+//		return args -> {
+//			var admin = new RegisterRequestDto("Admin", "Admin", "admin@mail.com", "password", ADMIN);
+//
+//			System.out.println("Admin token: " + service.register(admin).getAccessToken());
+//
+//			System.out.println("JESUS: Christian Andersen del vaffanculo un pò più in là");
+//		};
+//	}
 
-			System.out.println("JESUS: Christian Andersen del vaffanculo un pò più in là");
-		};
-	}
 }
 
 

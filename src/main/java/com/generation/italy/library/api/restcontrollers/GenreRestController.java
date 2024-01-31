@@ -13,11 +13,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/genres")
 @CrossOrigin
-public class GenresRestController {
+public class GenreRestController {
     LibraryService libraryService;
 
     @Autowired
-    GenresRestController(LibraryService libraryService) {
+    GenreRestController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 

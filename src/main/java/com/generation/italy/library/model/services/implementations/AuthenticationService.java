@@ -30,21 +30,18 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponseDto register(RegisterRequestDto request) {
-        var user = User.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
-                .build();
+        var user = new User(
+                request.getFirstname(),
+                request.getLastname(),
+                request.getEmail(),
+                passwordEncoder.encode(request.getPassword()),
+                request.getRole()
+        );
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         savedUserToken(savedUser, jwtToken);
-        return AuthenticationResponseDto.builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .build();
+        return  new AuthenticationResponseDto(jwtToken, refreshToken);
     }
 
     public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) {
@@ -53,18 +50,13 @@ public class AuthenticationService {
         );
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
         savedUserToken(user, jwtToken);
-        return AuthenticationResponseDto.builder().accessToken(jwtToken).refreshToken(jwtService.generateRefreshToken(user)).build();
+        return new AuthenticationResponseDto(jwtToken, refreshToken);
     }
 
     private void savedUserToken(User user, String jwtToken) {
-        var token = Token.builder()
-                .user(user)
-                .token(jwtToken)
-                .tokenType(TokenType.BEARER)
-                .expired(false)
-                .revoked(false)
-                .build();
+        var token = new Token(user, jwtToken, TokenType.BEARER, false, false);
         tokenRepository.save(token);
     }
 
@@ -94,10 +86,7 @@ public class AuthenticationService {
                 var accessToken = jwtService.generateToken(user);
                 revokeAllUserTokens(user);
                 savedUserToken(user, accessToken);
-                var authResponse = AuthenticationResponseDto.builder()
-                        .accessToken(accessToken)
-                        .refreshToken(jwtService.generateRefreshToken(user))
-                        .build();
+                var authResponse = new AuthenticationResponseDto(accessToken, refreshToken);
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }
