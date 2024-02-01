@@ -24,13 +24,9 @@ public class LibraryApplication {
 //	) {
 //		return args -> {
 //			var admin = new RegisterRequestDto("Admin", "Admin", "admin@mail.com", "password", ADMIN);
-//
 //			System.out.println("Admin token: " + service.register(admin).getAccessToken());
-//
-//			System.out.println("JESUS: Christian Andersen del vaffanculo un pò più in là");
 //		};
 //	}
-
 }
 
 
