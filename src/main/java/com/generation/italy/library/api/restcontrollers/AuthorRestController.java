@@ -5,6 +5,7 @@ import com.generation.italy.library.model.entities.Book;
 import com.generation.italy.library.model.exceptions.NoSuchEntityException;
 import com.generation.italy.library.model.services.abstractions.AbstractLibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,5 +34,9 @@ public class AuthorRestController {
             return  ResponseEntity.notFound().build();
         }
     }
-
+    @GetMapping("/name")
+    public ResponseEntity<List<Author>> getAuthorByName(@RequestParam String name1, @RequestParam String name2){
+        List<Author> result = libraryService.getAuthorByName(name1, name2);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

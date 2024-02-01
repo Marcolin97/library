@@ -16,7 +16,7 @@ public class Book {
     Set<Author> authors;
     @ManyToOne
     @JoinColumn(name = "genre_id", nullable = false)
-    private Genre genres;
+    private Genre genre;
     @ManyToOne
     @JoinColumn(name = "feedback_id", nullable = false)
     private Feedback feedback;
@@ -37,10 +37,10 @@ public class Book {
 
     public Book() {}
 
-    public Book(Long id, Set<Author> authors, Genre genres, Feedback feedback, String title, LocalDate publicationYear, String editor, String publisher, long pages, long price, String description) {
+    public Book(Long id, Set<Author> authors, Genre genre, Feedback feedback, String title, LocalDate publicationYear, String editor, String publisher, long pages, long price, String description) {
         this.id = id;
         this.authors = authors;
-        this.genres = genres;
+        this.genre = genre;
         this.feedback = feedback;
         this.title = title;
         this.publicationYear = publicationYear;
@@ -68,11 +68,11 @@ public class Book {
     }
 
     public Genre getGenres() {
-        return genres;
+        return genre;
     }
 
     public void setGenres(Genre genres) {
-        this.genres = genres;
+        this.genre = genres;
     }
 
     public Feedback getFeedback() {

@@ -50,6 +50,28 @@ public class LibraryService implements AbstractLibraryService {
         return  genreRepository.findAll();
     }
 
+    @Override
+    public List<Book> getBooksByGenre(long id) throws NoSuchEntityException {
+        Optional<Genre> optG = genreRepository.findById(id);
+        if (optG.isEmpty()){
+            throw new NoSuchEntityException("Tentativo di ricerca di generi per id inesistente", Genre.class);
+        }
+        List<Book> books = booksRepository.findByGenreId(id);
+        return books;
+    }
+
+    @Override
+    public List<Book> getBookByTitle(String title) {
+        return booksRepository.findByTitleContainingIgnoreCase(title);
+    }
+
+    @Override
+    public List<Author> getAuthorByName(String name1, String name2) {
+        List<Author> result = authorRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(name1, name2);
+        return result;
+    }
+
+
     public List<Book> getBooksByAuthor(long id) throws NoSuchEntityException {
         Optional<Author> optA = authorRepository.findById(id);
         if (optA.isEmpty()){

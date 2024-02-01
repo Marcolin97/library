@@ -12,4 +12,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     //SQL: "SELECT b.* FROM book b JOIN author_book ab ON b.book_id = ab.book_id WHERE ab.author_id = :authorId"
     List<Book> findByAuthorId(long authorId);
 
+    List<Book> findByGenreId(long id);
+
+    List<Book> findByTitleContainingIgnoreCase(String title);
 }

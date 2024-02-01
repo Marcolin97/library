@@ -1,25 +1,121 @@
 package com.generation.italy.library.dtos;
 
+import com.generation.italy.library.model.entities.Author;
+import com.generation.italy.library.model.entities.Feedback;
+import com.generation.italy.library.model.entities.Genre;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 public class BookDto {
     private Long id;
     private String authorFirstName;
     private String authorLastName;
-
     private String title;
-    @Column(name = "publication_year")
     private LocalDate publicationYear;
-    @Column(name = "editor")
     private String editor;
-    @Column(name = "publisher")
     private String publisher;
-    @Column(name = "pages")
     private long  pages;
-    @Column(name = "price")
     private Long price;
-    @Column(name = "description")
     private String description;
+
+    public BookDto() {}
+
+    public BookDto(Long id, String authorFirstName,
+                   String authorLastName, String title,
+                   LocalDate publicationYear, String editor,
+                   String publisher, long pages,
+                   Long price, String description) {
+        this.id = id;
+        this.authorFirstName = authorFirstName;
+        this.authorLastName = authorLastName;
+        this.title = title;
+        this.publicationYear = publicationYear;
+        this.editor = editor;
+        this.publisher = publisher;
+        this.pages = pages;
+        this.price = price;
+        this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAuthorFirstName() {
+        return authorFirstName;
+    }
+
+    public void setAuthorFirstName(String authorFirstName) {
+        this.authorFirstName = authorFirstName;
+    }
+
+    public String getAuthorLastName() {
+        return authorLastName;
+    }
+
+    public void setAuthorLastName(String authorLastName) {
+        this.authorLastName = authorLastName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public LocalDate getPublicationYear() {
+        return publicationYear;
+    }
+
+    public void setPublicationYear(LocalDate publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    public String getEditor() {
+        return editor;
+    }
+
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public long getPages() {
+        return pages;
+    }
+
+    public void setPages(long pages) {
+        this.pages = pages;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
