@@ -35,8 +35,11 @@ public class AuthorRestController {
         }
     }
     @GetMapping("/name")
-    public ResponseEntity<List<Author>> getAuthorByName(@RequestParam(required = false) String name1, @RequestParam(required = false) String name2){
-        List<Author> result = libraryService.getAuthorByName(name1, name2);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    public ResponseEntity<List<Author>> getAuthorByName(@RequestParam(required = false) String firstname, @RequestParam(required = false) String lastname){
+        List<Author> result = libraryService.getAuthorByName(firstname, lastname);
+        //return new ResponseEntity<>(result, HttpStatus.OK);
+        return ResponseEntity.ok(result);
     }
+
+
 }

@@ -66,8 +66,8 @@ public class LibraryService implements AbstractLibraryService {
     }
 
     @Override
-    public List<Author> getAuthorByName(String name1, String name2) {
-        List<Author> result = authorRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(name1, name2);
+    public List<Author> getAuthorByName(String firstname, String lastname) {
+        List<Author> result = authorRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(firstname, lastname);
         return result;
     }
 

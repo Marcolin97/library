@@ -20,12 +20,12 @@ public class BookRestController {
     }
 
     @GetMapping("/")
-    public List<Book> getAllBooks() {
-        return libraryService.getAllBooks();
+    public ResponseEntity<List<Book>> getAllBooks() {
+        return ResponseEntity.ok(libraryService.getAllBooks());
     }
 
     @GetMapping("/title")
-    public List<Book> getBookByTitle(@RequestParam String title){
-        return libraryService.getBookByTitle(title);
+    public ResponseEntity<List<Book>> getBookByTitle(@RequestParam String title){
+        return ResponseEntity.ok(libraryService.getBookByTitle(title));
     }
 }
