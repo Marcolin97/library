@@ -15,7 +15,7 @@ public class LibraryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
-		System.out.println("JESUS: Christian Andersen del vaffanculo un pò più in là");
+		System.out.println("Fabio manna è stato qui, ci dispiace");
 	}
 
 //	@Bean

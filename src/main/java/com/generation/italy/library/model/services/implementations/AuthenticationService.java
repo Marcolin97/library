@@ -11,6 +11,7 @@ import com.generation.italy.library.model.repositories.abstractions.UserReposito
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import com.generation.italy.library.model.entities.User;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +31,8 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    @Value("${application.security.jwt.expiration}")
+    private long jwtExpiration;
     public AuthenticationResponseDto register(RegisterRequestDto request) {
         var user = new User(
                 request.getFirstname(),
@@ -40,8 +44,9 @@ public class AuthenticationService {
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
+        Date d = new Date(System.currentTimeMillis() + jwtExpiration);
         savedUserToken(savedUser, jwtToken);
-        return  new AuthenticationResponseDto(jwtToken, refreshToken);
+        return  new AuthenticationResponseDto(jwtToken, refreshToken, user, d);
     }
 
     public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) {
@@ -51,8 +56,9 @@ public class AuthenticationService {
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
+        Date d = new Date(System.currentTimeMillis() + jwtExpiration);
         savedUserToken(user, jwtToken);
-        return new AuthenticationResponseDto(jwtToken, refreshToken);
+        return new AuthenticationResponseDto(jwtToken, refreshToken, user, d);
     }
 
     private void savedUserToken(User user, String jwtToken) {
@@ -86,7 +92,8 @@ public class AuthenticationService {
                 var accessToken = jwtService.generateToken(user);
                 revokeAllUserTokens(user);
                 savedUserToken(user, accessToken);
-                var authResponse = new AuthenticationResponseDto(accessToken, refreshToken);
+                Date d = new Date(System.currentTimeMillis() + jwtExpiration);
+                var authResponse = new AuthenticationResponseDto(accessToken, refreshToken, user, d);
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }
