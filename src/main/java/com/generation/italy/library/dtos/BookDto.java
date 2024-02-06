@@ -1,6 +1,7 @@
 package com.generation.italy.library.dtos;
 
 import com.generation.italy.library.model.entities.Author;
+import com.generation.italy.library.model.entities.Book;
 import com.generation.italy.library.model.entities.Feedback;
 import com.generation.italy.library.model.entities.Genre;
 import jakarta.persistence.*;
@@ -37,6 +38,19 @@ public class BookDto {
         this.pages = pages;
         this.price = price;
         this.description = description;
+    }
+
+    public BookDto(Book book){
+        this.id = book.getId();
+        this.authorFirstName = getAuthorFirstName();
+        this.authorLastName = getAuthorLastName();
+        this.title = book.getTitle();
+        this.publicationYear = book.getPublicationYear();
+        this.editor = book.getEditor();
+        this.publisher = book.getPublisher();
+        this.pages = book.getPages();
+        this.price = book.getPrice();
+        this.description = book.getDescription();
     }
 
     public Long getId() {
