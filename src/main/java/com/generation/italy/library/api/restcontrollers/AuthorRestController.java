@@ -1,5 +1,6 @@
 package com.generation.italy.library.api.restcontrollers;
 
+import com.generation.italy.library.dtos.AuthorDto;
 import com.generation.italy.library.model.entities.Author;
 import com.generation.italy.library.model.entities.Book;
 import com.generation.italy.library.model.exceptions.NoSuchEntityException;
@@ -21,8 +22,15 @@ public class AuthorRestController {
         this.libraryService = libraryService;
     }
     @GetMapping("/")
-    public List<Author> getAllAuthors() {
-        return libraryService.getAllAuthors();
+    public ResponseEntity<List<AuthorDto>> getAuthors(@RequestParam(required = false)String part) {
+        List<Author> authors = null;
+        if (part != null && !part.isEmpty()){
+            authors = libraryService.getAuthorByName(part);
+        } else{
+            authors = libraryService.getAllAuthors();
+        }
+        List<AuthorDto> dtos = authors.stream().map(AuthorDto::new).toList();
+        return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/{id}/books")
@@ -34,12 +42,12 @@ public class AuthorRestController {
             return  ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/name")
-    public ResponseEntity<List<Author>> getAuthorByName(@RequestParam(required = false) String firstname, @RequestParam(required = false) String lastname){
-        List<Author> result = libraryService.getAuthorByName(firstname, lastname);
-        //return new ResponseEntity<>(result, HttpStatus.OK);
-        return ResponseEntity.ok(result);
-    }
+//    @GetMapping("/name")
+//    public ResponseEntity<List<Author>> getAuthorByName(@RequestParam(required = false) String firstname, @RequestParam(required = false) String lastname){
+//        List<Author> result = libraryService.getAuthorByName(firstname, lastname);
+//        //return new ResponseEntity<>(result, HttpStatus.OK);
+//        return ResponseEntity.ok(result);
+//    }
 
 
 }

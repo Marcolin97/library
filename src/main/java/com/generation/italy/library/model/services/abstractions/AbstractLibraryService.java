@@ -19,6 +19,6 @@ public interface AbstractLibraryService {
 
     List<Book> getBookByTitle(String title);
 
-    List<Author> getAuthorByName(String firstname, String lastname);
+    List<Author> getAuthorByName(String part);
 
 }

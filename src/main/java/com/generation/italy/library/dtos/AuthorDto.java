@@ -1,5 +1,7 @@
 package com.generation.italy.library.dtos;
 
+import com.generation.italy.library.model.entities.Author;
+
 import java.time.LocalDate;
 
 public class AuthorDto {
@@ -21,7 +23,14 @@ public class AuthorDto {
         this.nationality = nationality;
         this.info = info;
     }
-
+    public AuthorDto (Author author){
+        this.id= author.getId();
+        this.firstName= author.getFirstName();
+        this.lastName= author.getLastName();
+        this.birthdate = author.getBirthdate();
+        this.nationality = author.getNationality();
+        this.info = author.getInfo();
+    }
     public Long getId() {
         return id;
     }
