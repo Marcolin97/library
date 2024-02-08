@@ -31,7 +31,7 @@ public class LibraryItemService implements AbstractLibraryItemService {
     }
 
     @Override
-    public void assignToBookUser(Integer userId, long bookId) {
+    public void assignBookToUser(Integer userId, long bookId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + userId));
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new EntityNotFoundException("Book not found with ID: " + bookId));
         LibraryItem libraryItem = new LibraryItem();

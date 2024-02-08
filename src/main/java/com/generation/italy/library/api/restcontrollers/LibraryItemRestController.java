@@ -22,7 +22,7 @@ public class LibraryItemRestController {
     @PostMapping("/")
     public ResponseEntity<String> assignBookToUser (@RequestParam Integer userId, @RequestParam long bookId) {
         try{
-            libraryItemService.assignToBookUser(userId, bookId);
+            libraryItemService.assignBookToUser(userId, bookId);
             return ResponseEntity.ok("tutto bene");
         } catch (Exception e){
             return ResponseEntity.badRequest().body("non tutto bene" + e.getMessage());

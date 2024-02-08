@@ -15,7 +15,7 @@ public class LibraryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
-		System.out.println("Fabio manna è stato qui, ci dispiace");
+		System.out.println("Spider-Pork, Spider-Pork, il soffitto tu mi spork, tu mi balli sulla test e mi sporchi tutto il rest, tu vaaaai, ti amo Spider-Pork");
 	}
 
 //	@Bean
