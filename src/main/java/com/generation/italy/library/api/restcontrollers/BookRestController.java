@@ -41,8 +41,4 @@ public class BookRestController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-//    @GetMapping("/title")
-//    public ResponseEntity<List<Book>> getBookByTitle(@RequestParam String title){
-//        return ResponseEntity.ok(libraryService.getBookByTitle(title));
-//    }
 }

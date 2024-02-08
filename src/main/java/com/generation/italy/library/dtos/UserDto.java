@@ -2,6 +2,8 @@ package com.generation.italy.library.dtos;
 
 import com.generation.italy.library.model.entities.User;
 
+import java.util.List;
+
 public class UserDto {
     private Integer id;
     private String firstname;
@@ -9,6 +11,7 @@ public class UserDto {
     private String email;
     private String password;
     private String role;
+    private List<LibraryItemDto> libraryItemDtos;
 
     public UserDto() {}
 
@@ -19,6 +22,15 @@ public class UserDto {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.role = user.getRole().toString();
+        this.libraryItemDtos = null;
+    }
+
+    public List<LibraryItemDto> getLibraryItemDtos() {
+        return libraryItemDtos;
+    }
+
+    public void setLibraryItemDtos(List<LibraryItemDto> libraryItemDtos) {
+        this.libraryItemDtos = libraryItemDtos;
     }
 
     public Integer getId() {
