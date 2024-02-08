@@ -34,10 +34,12 @@ public class Book {
     private Long price;
     @Column(name = "description")
     private String description;
+    @Column(name = "img")
+    private String img;
 
     public Book() {}
 
-    public Book(Long id, Set<Author> authors, Genre genre, Feedback feedback, String title, LocalDate publicationYear, String editor, String publisher, long pages, long price, String description) {
+    public Book(Long id, Set<Author> authors, Genre genre, Feedback feedback, String title, LocalDate publicationYear, String editor, String publisher, long pages, long price, String description, String img) {
         this.id = id;
         this.authors = authors;
         this.genre = genre;
@@ -49,6 +51,23 @@ public class Book {
         this.pages = pages;
         this.price = price;
         this.description = description;
+        this.img = img;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Long getId() {

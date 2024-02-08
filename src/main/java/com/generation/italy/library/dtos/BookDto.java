@@ -20,25 +20,27 @@ public class BookDto {
     private long  pages;
     private Long price;
     private String description;
+    private String img;
 
     public BookDto() {}
 
-    public BookDto(Long id, String authorFirstName,
-                   String authorLastName, String title,
-                   LocalDate publicationYear, String editor,
-                   String publisher, long pages,
-                   Long price, String description) {
-        this.id = id;
-        this.authorFirstName = authorFirstName;
-        this.authorLastName = authorLastName;
-        this.title = title;
-        this.publicationYear = publicationYear;
-        this.editor = editor;
-        this.publisher = publisher;
-        this.pages = pages;
-        this.price = price;
-        this.description = description;
-    }
+//    public BookDto(Long id, String authorFirstName,
+//                   String authorLastName, String title,
+//                   LocalDate publicationYear, String editor,
+//                   String publisher, long pages,
+//                   Long price, String description, String img) {
+//        this.id = id;
+//        this.authorFirstName = authorFirstName;
+//        this.authorLastName = authorLastName;
+//        this.title = title;
+//        this.publicationYear = publicationYear;
+//        this.editor = editor;
+//        this.publisher = publisher;
+//        this.pages = pages;
+//        this.price = price;
+//        this.description = description;
+//        this.img = img;
+//    }
 
     public BookDto(Book book){
         this.id = book.getId();
@@ -51,6 +53,15 @@ public class BookDto {
         this.pages = book.getPages();
         this.price = book.getPrice();
         this.description = book.getDescription();
+        this.img = book.getImg();
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Long getId() {

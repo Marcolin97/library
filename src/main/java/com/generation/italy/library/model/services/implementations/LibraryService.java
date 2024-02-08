@@ -13,6 +13,7 @@ import com.generation.italy.library.model.services.abstractions.AbstractLibraryS
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,7 +71,6 @@ public class LibraryService implements AbstractLibraryService {
         return authorRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(part, part);
     }
 
-
     public List<Book> getBooksByAuthor(long id) throws NoSuchEntityException {
         Optional<Author> optA = authorRepository.findById(id);
         if (optA.isEmpty()){
@@ -80,4 +80,8 @@ public class LibraryService implements AbstractLibraryService {
         return books;
     }
 
+    @Override
+    public  Optional<Book> findBookById(long id) {
+        return booksRepository.findById(id);
+    }
 }

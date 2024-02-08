@@ -1,6 +1,7 @@
 package com.generation.italy.library.model.services.implementations;
 
 import com.generation.italy.library.dtos.ChangePasswordRequestDto;
+import com.generation.italy.library.dtos.LibraryItemDto;
 import com.generation.italy.library.dtos.UserDto;
 import com.generation.italy.library.model.entities.User;
 import com.generation.italy.library.model.repositories.abstractions.AuthorRepository;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -57,4 +59,6 @@ public class UserService implements AbstractUserService {
         return new UserDto(user);
     }
 
+//    public List<LibraryItemDto> fetchAssignedBook(Long userId) {
+//    }
 }

@@ -32,6 +32,15 @@ public class BookRestController {
         return ResponseEntity.ok(dtos);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDto> findById(@PathVariable long id) {
+        return libraryService.findBookById(id).stream()
+                .map(BookDto::new)
+                .map(ResponseEntity::ok)
+                .findFirst()
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 //    @GetMapping("/title")
 //    public ResponseEntity<List<Book>> getBookByTitle(@RequestParam String title){
 //        return ResponseEntity.ok(libraryService.getBookByTitle(title));

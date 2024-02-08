@@ -6,6 +6,7 @@ import com.generation.italy.library.model.entities.Genre;
 import com.generation.italy.library.model.exceptions.NoSuchEntityException;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AbstractLibraryService {
     List<Book> getBooksByAuthor(long id) throws NoSuchEntityException;
@@ -20,5 +21,7 @@ public interface AbstractLibraryService {
     List<Book> getBookByTitle(String title);
 
     List<Author> getAuthorByName(String part);
+
+    Optional<Book> findBookById(long id);
 
 }
