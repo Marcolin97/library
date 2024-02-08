@@ -20,9 +20,10 @@ public class LibraryItemRestController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> assignBookToUser (@RequestParam Integer userId, @RequestParam long bookId) {
+    public ResponseEntity<String> assignBookToUser (@RequestParam Long userId, @RequestParam long bookId) {
+        Integer id = Math.toIntExact(userId);
         try{
-            libraryItemService.assignBookToUser(userId, bookId);
+            libraryItemService.assignBookToUser(id, bookId);
             return ResponseEntity.ok("tutto bene");
         } catch (Exception e){
             return ResponseEntity.badRequest().body("non tutto bene" + e.getMessage());
