@@ -27,15 +27,4 @@ public class UserRestController {
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping("/")
-//    public ResponseEntity<UserDto> getUserData(Principal connectedUser) {
-//        UserDto userDto = service.getUserProfile(connectedUser);
-//        if(userDto == null){
-//            return ResponseEntity.badRequest().build();
-//        }
-//        List<LibraryItem> books = service.getLibrary(userDto.getId());
-//        userDto.setLibraryItemDtos(books.stream().map(LibraryItemDto::new).toList());
-//            return ResponseEntity.ok(userDto);
-//    }
-
 }

@@ -2,6 +2,7 @@ package com.generation.italy.library.api.restcontrollers;
 
 import com.generation.italy.library.dtos.LibraryItemDto;
 import com.generation.italy.library.dtos.UserDto;
+import com.generation.italy.library.model.entities.Book;
 import com.generation.italy.library.model.entities.LibraryItem;
 import com.generation.italy.library.model.entities.User;
 import com.generation.italy.library.model.services.abstractions.LibraryService;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/library")
@@ -43,4 +46,14 @@ public class LibraryItemRestController {
         List<LibraryItemDto> library = books.stream().map(LibraryItemDto::new).toList();
         return ResponseEntity.ok(library);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> removeBook(@PathVariable long id){
+        Optional<LibraryItem> result = libraryService.deleteLibraryItem(id);
+        return result.stream()
+                .map(lb -> ResponseEntity.ok().build())
+                .findFirst()
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }

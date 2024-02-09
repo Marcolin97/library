@@ -3,6 +3,7 @@ package com.generation.italy.library.dtos;
 import com.generation.italy.library.model.entities.LibraryItem;
 
 public class LibraryItemDto {
+    private Long id;
     private Integer userId;
     private Long bookId;
     private String title;
@@ -16,6 +17,7 @@ public class LibraryItemDto {
     public LibraryItemDto() {}
 
     public LibraryItemDto(LibraryItem libraryItem) {
+        this.id = libraryItem.getAssignmentId();
         this.userId = libraryItem.getUser().getId();
         this.bookId = libraryItem.getBook().getId();
         this.title = libraryItem.getBook().getTitle();
@@ -28,6 +30,15 @@ public class LibraryItemDto {
         this.img = libraryItem.getBook().getImg();
         //this.author = libraryItem.getBook().getAuthors();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        id = id;
+    }
+
     public Integer getUserId() {
         return userId;
     }

@@ -28,6 +28,5 @@ public interface LibraryService {
     Optional<Book> findBookById(long id);
     List<LibraryItem> getLibrary(Integer id);
     List<Book> getAllBooks();
-
-
+    Optional<LibraryItem> deleteLibraryItem(long id);
 }

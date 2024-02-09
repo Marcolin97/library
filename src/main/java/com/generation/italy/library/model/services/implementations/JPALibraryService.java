@@ -16,6 +16,7 @@ import com.generation.italy.library.model.repositories.abstractions.TokenReposit
 import com.generation.italy.library.model.repositories.abstractions.UserRepository;
 import com.generation.italy.library.model.entities.User;
 
+import javax.swing.text.html.Option;
 import java.security.Principal;
 import java.util.*;
 
@@ -51,22 +52,14 @@ public class JPALibraryService implements LibraryService {
     }
 
     public void changePassword(ChangePasswordRequestDto request, Principal connectedUser) {
-
         var user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
-
-        // check if the current password is correct
         if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
             throw new IllegalStateException("Wrong password");
         }
-        // check if the two new passwords are the same
         if (!request.getNewPassword().equals(request.getConfirmationPassword())) {
             throw new IllegalStateException("Password are not the same");
         }
-
-        // update the password
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
-
-        // save the new password
         repository.save(user);
     }
 
@@ -143,6 +136,14 @@ public class JPALibraryService implements LibraryService {
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
+
+    @Override
+    public Optional<LibraryItem> deleteLibraryItem(long id) {
+        Optional<LibraryItem> lb = libraryItemRepository.findById(id);
+        lb.ifPresent(l -> libraryItemRepository.delete(l));
+        return lb;
+    }
+
 
 
 }
