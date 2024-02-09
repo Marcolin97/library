@@ -3,6 +3,7 @@ package com.generation.italy.library.model.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany
-    Set<Author> authors;
+    List<Author> authors;
     @ManyToOne
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
@@ -39,7 +40,7 @@ public class Book {
 
     public Book() {}
 
-    public Book(Long id, Set<Author> authors, Genre genre, Feedback feedback, String title, LocalDate publicationYear, String editor, String publisher, long pages, long price, String description, String img) {
+    public Book(Long id, List<Author> authors, Genre genre, Feedback feedback, String title, LocalDate publicationYear, String editor, String publisher, long pages, long price, String description, String img) {
         this.id = id;
         this.authors = authors;
         this.genre = genre;
@@ -78,11 +79,11 @@ public class Book {
         this.id = id;
     }
 
-    public Set<Author> getAuthors() {
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Set<Author> authors) {
+    public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
 
@@ -157,4 +158,5 @@ public class Book {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

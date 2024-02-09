@@ -3,8 +3,7 @@ package com.generation.italy.library.api.restcontrollers;
 import com.generation.italy.library.model.entities.Book;
 import com.generation.italy.library.model.entities.Genre;
 import com.generation.italy.library.model.exceptions.NoSuchEntityException;
-import com.generation.italy.library.model.services.abstractions.AbstractLibraryService;
-import com.generation.italy.library.model.services.implementations.LibraryService;
+import com.generation.italy.library.model.services.abstractions.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +14,10 @@ import java.util.List;
 @RequestMapping("/api/genre")
 @CrossOrigin
 public class GenreRestController {
-    private AbstractLibraryService libraryService;
+    private LibraryService libraryService;
 
     @Autowired
-    GenreRestController(AbstractLibraryService libraryService) {
+    GenreRestController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 

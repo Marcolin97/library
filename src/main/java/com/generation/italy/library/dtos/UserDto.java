@@ -1,5 +1,6 @@
 package com.generation.italy.library.dtos;
 
+import com.generation.italy.library.model.entities.LibraryItem;
 import com.generation.italy.library.model.entities.User;
 
 import java.util.List;
@@ -22,7 +23,15 @@ public class UserDto {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.role = user.getRole().toString();
-        this.libraryItemDtos = null;
+    }
+    public UserDto(User user, List<LibraryItem> lb) {
+        this.id = user.getId();
+        this.firstname = user.getFirstname();
+        this.lastname = user.getLastname();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.role = user.getRole().toString();
+        this.libraryItemDtos = lb.stream().map(LibraryItemDto::new).toList();
     }
 
     public List<LibraryItemDto> getLibraryItemDtos() {

@@ -7,7 +7,10 @@ import com.generation.italy.library.model.entities.Genre;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class BookDto {
     private Long id;
@@ -44,8 +47,12 @@ public class BookDto {
 
     public BookDto(Book book){
         this.id = book.getId();
-        this.authorFirstName = getAuthorFirstName();
-        this.authorLastName = getAuthorLastName();
+        List<Author> authors = book.getAuthors();
+        if (authors != null && !authors.isEmpty()) {
+            List<Author> authorList = new ArrayList<>(authors);
+            this.authorFirstName = authorList.stream().map(Author::getFirstName).collect(Collectors.joining(", "));
+            this.authorLastName = authorList.stream().map(Author::getLastName).collect(Collectors.joining(", "));
+        }
         this.title = book.getTitle();
         this.publicationYear = book.getPublicationYear();
         this.editor = book.getEditor();

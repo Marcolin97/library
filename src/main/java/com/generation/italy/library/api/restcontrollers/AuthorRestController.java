@@ -4,7 +4,7 @@ import com.generation.italy.library.dtos.AuthorDto;
 import com.generation.italy.library.model.entities.Author;
 import com.generation.italy.library.model.entities.Book;
 import com.generation.italy.library.model.exceptions.NoSuchEntityException;
-import com.generation.italy.library.model.services.abstractions.AbstractLibraryService;
+import com.generation.italy.library.model.services.abstractions.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import java.util.List;
 @RequestMapping("/api/authors")
 @CrossOrigin
 public class AuthorRestController {
-    private AbstractLibraryService libraryService;
+    private LibraryService libraryService;
     @Autowired
-    public AuthorRestController(AbstractLibraryService libraryService){
+    public AuthorRestController(LibraryService libraryService){
         this.libraryService = libraryService;
     }
     @GetMapping("/")

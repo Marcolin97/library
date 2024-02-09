@@ -1,13 +1,11 @@
 package com.generation.italy.library.model.services.implementations;
 
 import com.generation.italy.library.dtos.ChangePasswordRequestDto;
-import com.generation.italy.library.dtos.LibraryItemDto;
 import com.generation.italy.library.dtos.UserDto;
 import com.generation.italy.library.model.entities.LibraryItem;
 import com.generation.italy.library.model.entities.User;
 import com.generation.italy.library.model.repositories.abstractions.UserRepository;
-import com.generation.italy.library.model.services.abstractions.AbstractUserService;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,8 +16,7 @@ import java.security.Principal;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
-public class UserService implements AbstractUserService {
+public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private UserRepository repository;
@@ -55,9 +52,14 @@ public class UserService implements AbstractUserService {
         return new UserDto(user);
     }
 
-    @Override
+
     public List<LibraryItem> getLibrary(Integer id) {
         return repository.getLibrary(id);
+    }
+
+    public User getUserProfile(Integer id) {
+        User user = repository.findById(id).get();
+        return user;
     }
 
 }
