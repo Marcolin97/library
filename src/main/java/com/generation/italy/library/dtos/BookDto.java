@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 
 public class BookDto {
     private Long id;
-    private String authorFirstName;
-    private String authorLastName;
+    private List<Author> authors;
+    private Genre genre;
     private String title;
     private LocalDate publicationYear;
     private String editor;
@@ -47,12 +47,15 @@ public class BookDto {
 
     public BookDto(Book book){
         this.id = book.getId();
-        List<Author> authors = book.getAuthors();
-        if (authors != null && !authors.isEmpty()) {
-            List<Author> authorList = new ArrayList<>(authors);
-            this.authorFirstName = authorList.stream().map(Author::getFirstName).collect(Collectors.joining(", "));
-            this.authorLastName = authorList.stream().map(Author::getLastName).collect(Collectors.joining(", "));
-        }
+        this.authors = book.getAuthors();
+//        List<Author> authors = book.getAuthors();
+//        if (authors != null && !authors.isEmpty()) {
+//            List<Author> authorList = new ArrayList<>(authors);
+//            this.authorFirstName = authorList.stream().map(Author::getFirstName).collect(Collectors.joining(", "));
+//            this.authorLastName = authorList.stream().map(Author::getLastName).collect(Collectors.joining(", "));
+//        }
+
+        this.genre = book.getGenre();
         this.title = book.getTitle();
         this.publicationYear = book.getPublicationYear();
         this.editor = book.getEditor();
@@ -61,6 +64,22 @@ public class BookDto {
         this.price = book.getPrice();
         this.description = book.getDescription();
         this.img = book.getImg();
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public String getImg() {
@@ -79,21 +98,21 @@ public class BookDto {
         this.id = id;
     }
 
-    public String getAuthorFirstName() {
-        return authorFirstName;
-    }
-
-    public void setAuthorFirstName(String authorFirstName) {
-        this.authorFirstName = authorFirstName;
-    }
-
-    public String getAuthorLastName() {
-        return authorLastName;
-    }
-
-    public void setAuthorLastName(String authorLastName) {
-        this.authorLastName = authorLastName;
-    }
+//    public String getAuthorFirstName() {
+//        return authorFirstName;
+//    }
+//
+//    public void setAuthorFirstName(String authorFirstName) {
+//        this.authorFirstName = authorFirstName;
+//    }
+//
+//    public String getAuthorLastName() {
+//        return authorLastName;
+//    }
+//
+//    public void setAuthorLastName(String authorLastName) {
+//        this.authorLastName = authorLastName;
+//    }
 
     public String getTitle() {
         return title;

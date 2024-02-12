@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/genre")
-@CrossOrigin
 public class GenreRestController {
     private LibraryService libraryService;
 
@@ -26,7 +25,7 @@ public class GenreRestController {
         return libraryService.getAllGenres();
     }
 
-    @GetMapping("/{id}/books")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getBooksByGenreId(@PathVariable long id) {
         try {
             List<Book> result = libraryService.getBooksByGenre(id);
