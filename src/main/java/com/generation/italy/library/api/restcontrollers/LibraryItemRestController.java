@@ -34,9 +34,9 @@ public class LibraryItemRestController {
         Integer id = Math.toIntExact(userId);
         try{
             libraryService.assignBookToUser(id, bookId);
-            return ResponseEntity.ok("tutto bene");
+            return ResponseEntity.ok("Everything OK");
         } catch (Exception e){
-            return ResponseEntity.badRequest().body("non tutto bene" + e.getMessage());
+            return ResponseEntity.badRequest().body("Not all good" + e.getMessage());
         }
     }
     @GetMapping("/{id}")

@@ -67,19 +67,25 @@ public class JPALibraryService implements LibraryService {
 
     @Override
     public void assignBookToUser(Integer userId, long bookId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + userId));
-        Book book = bookRepository.findById(bookId).orElseThrow(() -> new EntityNotFoundException("Book not found with ID: " + bookId));
-        LibraryItem libraryItem = new LibraryItem();
-        libraryItem.setUser(user);
-        libraryItem.setBook(book);
-        libraryItemRepository.save(libraryItem);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + userId));
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("Book not found with ID: " + bookId));
+        if (libraryItemRepository.existsByUserAndBook(user, book)) {
+            throw new IllegalStateException("The book is already on your list.");
+        } else {
+            LibraryItem libraryItem = new LibraryItem();
+            libraryItem.setUser(user);
+            libraryItem.setBook(book);
+            libraryItemRepository.save(libraryItem);
+        }
     }
 
     @Override
     public List<Book> getBooksByAuthor(long id) throws NoSuchEntityException {
         Optional<Author> optA = authorRepository.findById(id);
         if (optA.isEmpty()){
-            throw new NoSuchEntityException("Tentativo di ricerca di libri per autore inesistente", Author.class);
+            throw new NoSuchEntityException("Attempt to search for books by non-existent author", Author.class);
         }
         List<Book> books = bookRepository.findByAuthorId(id);
         return books;
@@ -99,7 +105,7 @@ public class JPALibraryService implements LibraryService {
     public List<Book> getBooksByGenre(long id) throws NoSuchEntityException {
         Optional<Genre> optG = genreRepository.findById(id);
         if (optG.isEmpty()){
-            throw new NoSuchEntityException("Tentativo di ricerca di generi per id inesistente", Genre.class);
+            throw new NoSuchEntityException("Attempting to search for genres for non-existent id", Genre.class);
         }
         List<Book> books = bookRepository.findByGenreId(id);
         return books;
@@ -125,7 +131,7 @@ public class JPALibraryService implements LibraryService {
         return repository.getLibrary(id);
     }
     public UserDto getUserProfile(Principal connectedUser) {
-        User user = repository.findByEmail(connectedUser.getName()).orElseThrow(() -> new UsernameNotFoundException("utente non trovato"));
+        User user = repository.findByEmail(connectedUser.getName()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return new UserDto(user);
     }
 
