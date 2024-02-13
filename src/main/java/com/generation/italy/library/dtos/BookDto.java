@@ -24,6 +24,8 @@ public class BookDto {
     private Long price;
     private String description;
     private String img;
+    private Feedback feedback;
+
 
     public BookDto() {}
 
@@ -64,6 +66,15 @@ public class BookDto {
         this.price = book.getPrice();
         this.description = book.getDescription();
         this.img = book.getImg();
+        this.feedback = book.getFeedback();
+    }
+
+    public Feedback getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(Feedback feedback) {
+        this.feedback = feedback;
     }
 
     public List<Author> getAuthors() {
