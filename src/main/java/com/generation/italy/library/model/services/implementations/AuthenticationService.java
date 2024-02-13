@@ -6,6 +6,7 @@ import com.generation.italy.library.dtos.AuthenticationResponseDto;
 import com.generation.italy.library.dtos.RegisterRequestDto;
 import com.generation.italy.library.model.entities.Token;
 import com.generation.italy.library.model.entities.TokenType;
+import com.generation.italy.library.model.exceptions.EmailAlreadyExistsException;
 import com.generation.italy.library.model.repositories.abstractions.TokenRepository;
 import com.generation.italy.library.model.repositories.abstractions.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,6 +35,9 @@ public class AuthenticationService {
     @Value("${application.security.jwt.expiration}")
     private long jwtExpiration;
     public AuthenticationResponseDto register(RegisterRequestDto request) {
+        if (repository.findByEmail(request.getEmail()).isPresent()){
+            throw new EmailAlreadyExistsException("L'indirizzo email è già in uso");
+        }
         var user = new User(
                 request.getFirstname(),
                 request.getLastname(),

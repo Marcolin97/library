@@ -8,118 +8,228 @@ ALTER TYPE public.role OWNER TO "postgresMaster";
 
 CREATE CAST (character varying AS public.role) WITH INOUT AS ASSIGNMENT;
 
--- Creazione della tabella "_user"
-CREATE TABLE IF NOT EXISTS _user (
-    user_id SERIAL PRIMARY KEY,
-    firstname VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role public.role NOT NULL
-);
+-- Inserimenti nella tabella "authors"
+INSERT INTO authors (first_name, birthdate, nationality, info, last_name) VALUES
+    ('Jane', '1775-12-16', 'English', 'Author of "Pride and Prejudice."', 'Austen'),
+    ('Fyodor', '1821-11-11', 'Russian', 'Renowned Russian author, known for "Crime and Punishment."', 'Dostoevsky'),
+    ('Charles', '1812-02-07', 'English', 'Author of "Great Expectations."', 'Dickens'),
+    ('Gabriel García', '1927-03-06', 'Colombian', 'Renowned Colombian author, known for "One Hundred Years of Solitude."', 'Márquez'),
+    ('George', '1903-06-25', 'English', 'Author of "1984."', 'Orwell'),
+    ('J.K.', '1965-07-31', 'British', 'Author of "Harry Potter and the Philosopher''s Stone."', 'Rowling'),
+    ('Harper', '1926-04-28', 'American', 'Author of "To Kill a Mockingbird."', 'Lee'),
+    ('Leo', '1828-09-09', 'Russian', 'Author of "War and Peace."', 'Tolstoy'),
+    ('Virginia', '1882-01-25', 'English', 'Modernist author, known for "Mrs Dalloway."', 'Woolf'),
+    ('J.R.R.', '1892-01-03', 'English', 'Author of "The Lord of the Rings."', 'Tolkien'),
+    ('Agatha', '1890-09-15', 'English', 'Queen of Mystery, known for "And Then There Were None."', 'Christie'),
+    ('Ernest', '1899-07-21', 'American', 'Author of "The Old Man and the Sea."', 'Hemingway'),
+    ('Franz', '1883-07-03', 'German', 'Author of "The Metamorphosis."', 'Kafka'),
+    ('Emily', '1818-07-30', 'English', 'Author of "Wuthering Heights."', 'Brontë'),
+    ('Mark', '1835-11-30', 'American', 'Author of "The Adventures of Tom Sawyer."', 'Twain'),
+    ('Aldous', '1894-07-26', 'English', 'Author of "Brave New World."', 'Huxley'),
+    ('Charlotte', '1816-04-21', 'English', 'Author of "Jane Eyre."', 'Brontë'),
+    ('Daphne', '1907-05-13', 'English', 'Author of "Rebecca."', 'du Maurier'),
+    ('F. Scott', '1896-09-24', 'American', 'Author of "The Great Gatsby."', 'Fitzgerald'),
+    ('Ray', '1920-08-22', 'American', 'Author of "Fahrenheit 451."', 'Bradbury'),
+    ('Oscar', '1854-10-16', 'Irish', 'Author of "The Picture of Dorian Gray."', 'Wilde'),
+    ('H.G.', '1866-09-21', 'English', 'Author of "The War of the Worlds."', 'Wells'),
+    ('Margaret', '1939-11-18', 'Canadian', 'Author of "The Handmaid''s Tale."', 'Atwood'),
+    ('George R.R.', '1948-09-20', 'American', 'Author of "A Song of Ice and Fire" series.', 'Martin'),
+    ('Milan', '1929-04-01', 'Czech', 'Philosopher, novelist, and essayist.', 'Kundera'),
+    ('James', '1882-02-02', 'Irish', 'Author of "Ulysses."', 'Joyce'),
+    ('H.P.', '1890-08-20', 'American', 'Author of weird and horror fiction.', 'Lovecraft'),
+    ('Italo', '1923-10-15', 'Italian', 'Author of "Invisible Cities."', 'Calvino'),
+    ('Roald', '1916-09-13', 'British', 'Author of "Charlie and the Chocolate Factory."', 'Dahl'),
+    ('Gabriel M.', '1965-11-13', 'Argentinian', 'Philosopher and essayist.', 'Zanotti'),
+    ('Ken', '1949-06-05', 'Welsh', 'Author of "The Pillars of the Earth."', 'Follett'),
+    ('Isabel', '1942-08-02', 'Chilean', 'Author of "The House of the Spirits."', 'Allende'),
+    ('Salman', '1947-06-19', 'Indian', 'Author of "The Satanic Verses."', 'Rushdie'),
+    ('Ken', '1935-09-17', 'American', 'Author of "One Flew Over the Cuckoo''s Nest."', 'Kesey'),
+    ('Ayn', '1905-02-02', 'Russian-American', 'Author of "The Fountainhead."', 'Rand'),
+    ('Philip K.', '1928-12-16', 'American', 'Author of "Do Androids Dream of Electric Sheep?", adapted into "Blade Runner."', 'Dick'),
+    ('Kurt', '1922-11-11', 'American', 'Author of "Slaughterhouse-Five."', 'Vonnegut'),
+    ('John', '1902-02-27', 'American', 'Author of "The Grapes of Wrath."', 'Steinbeck'),
+    ('Truman', '1924-09-30', 'American', 'Author of "In Cold Blood."', 'Capote'),
+    ('Kazuo', '1954-11-08', 'Japanese-British', 'Author of "Never Let Me Go."', 'Ishiguro'),
+    ('Michael', '1929-11-12', 'German', 'Author of "The NeverEnding Story."', 'Ende'),
+    ('José', '1922-11-16', 'Portuguese', 'Nobel Prize-winning author.', 'Saramago'),
+    ('Anthony', '1917-02-25', 'English', 'Author of "A Clockwork Orange."', 'Burgess'),
+    ('Donna', '1963-12-23', 'American', 'Author of "The Secret History" and "The Goldfinch."', 'Tartt'),
+    ('Haruki', '1949-01-12', 'Japanese', 'Renowned Japanese author, known for "Norwegian Wood."', 'Murakami'),
+    ('Thomas', '1875-06-06', 'German', 'Author of "The Magic Mountain."', 'Mann'),
+    ('Milan', '1929-04-01', 'Czech', 'Philosopher, novelist, and essayist.', 'Kundera'),
+    ('Irvine', '1948-09-27', 'Scottish', 'Author of "Trainspotting."', 'Welsh'),
+    ('Yann', '1963-06-25', 'Canadian', 'Author of "Life of Pi."', 'Martel'),
+    ('Chimamanda Ngozi', '1977-09-15', 'Nigerian', 'Author of "Half of a Yellow Sun."', 'Adichie');
 
--- Creazione della tabella "token"
-CREATE TABLE IF NOT EXISTS token (
-    token_id SERIAL PRIMARY KEY,
-    token VARCHAR(255) UNIQUE NOT NULL,
-    token_type VARCHAR(50) NOT NULL,
-    revoked BOOLEAN NOT NULL,
-    expired BOOLEAN NOT NULL,
-    user_id BIGINT,
-	FOREIGN KEY (user_id) REFERENCES _user(user_id)
-);
+-- Inserimenti nella tabella "genres"
+INSERT INTO genres (genre_name) VALUES
+    ('Classic'),
+    ('Russian Literature'),
+    ('Historical Fiction'),
+    ('Magical Realism'),
+    ('Dystopian Fiction'),
+    ('Fantasy Epic'),
+    ('Children''s Classics'),
+    ('Scottish Fiction'),
+    ('Adventure Fiction'),
+    ('Philosophical Fiction');
 
--- Creazione della tabella "authors"
-CREATE TABLE authors (
-    author_id SERIAL PRIMARY KEY,
-    author_name VARCHAR(255) NOT NULL,
-    birthdate DATE,
-    nationality VARCHAR(50),
-    info VARCHAR(250)
-);
+-- Inserimenti nella tabella "feedback"
+INSERT INTO feedback (comment, rating, publication_date) VALUES
+    ('A witty and romantic journey into Regency England.', 5, '2024-02-13'),
+    ('Intense psychological exploration.', 4, '2024-02-13'),
+    ('Compelling coming-of-age tale in Victorian England.', 5, '2024-02-13'),
+    ('Magical and captivating multi-generational saga.', 4, '2024-02-13'),
+    ('Disturbing glimpse into a dystopian future.', 5, '2024-02-13'),
+    ('Enchanting introduction to the world of magic.', 5, '2024-02-13'),
+    ('Powerful portrayal of racial injustice.', 4, '2024-02-13'),
+    ('Epic depiction of Russian society during war.', 5, '2024-02-13'),
+    ('A day in post-World War I London.', 4, '2024-02-13'),
+    ('Epic fantasy quest to destroy the One Ring.', 5, '2024-02-13'),
+    ('Classic mystery novel with a deadly twist.', 4, '2024-02-13'),
+    ('The story of an aging Cuban fisherman and his giant marlin.', 5, '2024-02-13'),
+    ('Surreal tale of a man transformed into a giant insect.', 4, '2024-02-13'),
+    ('Dark and passionate tale of love and revenge on the moors.', 5, '2024-02-13'),
+    ('Mischievous adventures of Tom Sawyer.', 4, '2024-02-13'),
+    ('Dystopian vision of sacrificing individuality for stability.', 5, '2024-02-13'),
+    ('Life and love story of the orphan Jane Eyre.', 4, '2024-02-13'),
+    ('Psychological thriller around the mysterious death of Rebecca.', 5, '2024-02-13'),
+    ('Portrayal of the American Dream in the Roaring Twenties.', 4, '2024-02-13'),
+    ('Dystopian future where books are banned and burned.', 5, '2024-02-13'),
+    ('Faustian tale of a man remaining young while his portrait ages.', 4, '2024-02-13'),
+    ('Invasion of Earth by Martians and ensuing panic.', 5, '2024-02-13'),
+    ('Dystopian world where women are property of the state.', 4, '2024-02-13'),
+    ('Epic fantasy series with political intrigue and dragons.', 5, '2024-02-13'),
+    ('Philosophical novel exploring the nature of existence.', 4, '2024-02-13'),
+    ('Modernist masterpiece depicting a day in Dublin.', 5, '2024-02-13'),
+    ('Collection of cosmic horror tales in Arkham.', 4, '2024-02-13'),
+    ('Exploration of identity and existence in a whimsical narrative.', 5, '2024-02-13'),
+    ('Magical journey with James and his insect friends.', 4, '2024-02-13'),
+    ('Comprehensive guide to technical analysis in finance.', 5, '2024-02-13'),
+    ('Historical fiction on cathedral construction in the Middle Ages.', 4, '2024-02-13'),
+    ('Family saga with magical realism in South America.', 5, '2024-02-13'),
+    ('Controversial and thought-provoking tale on identity and faith.', 4, '2024-02-13'),
+    ('Psychiatric rebellion against authority in a mental institution.', 5, '2024-02-13'),
+    ('Exploration of individualism and pursuit of self-interest.', 4, '2024-02-13'),
+    ('Sci-fi novel inspiring the film "Blade Runner."', 5, '2024-02-13'),
+    ('Satirical novel on World War II and the Dresden Bombing.', 4, '2024-02-13'),
+    ('Family story during the Great Depression in the U.S.', 5, '2024-02-13'),
+    ('Account of the Clutter family murder in Kansas.', 4, '2024-02-13'),
+    ('Story of friendship and loss in a dystopian world.', 5, '2024-02-13'),
+    ('Fantasy adventures of Bastian in the world of Fantasia.', 4, '2024-02-13'),
+    ('Society hit by a sudden epidemic of blindness.', 5, '2024-02-13'),
+    ('Story of Alex in a violent futuristic dystopian society.', 4, '2024-02-13'),
+    ('Theo Decker''s life intertwined with "The Goldfinch."', 5, '2024-02-13'),
+    ('Nostalgia of young love in 1960s Japan.', 4, '2024-02-13'),
+    ('Narrative set in a Swiss clinic for tuberculosis patients.', 5, '2024-02-13'),
+    ('Story of two Czech emigrants returning home after decades.', 4, '2024-02-13'),
+    ('Life of heroin addicts in the streets of Edinburgh.', 5, '2024-02-13'),
+    ('Survival story of Pi Patel, shipwrecked with a Bengal tiger.', 4, '2024-02-13'),
+    ('Exploration of post-colonial Nigeria through three intertwined lives.', 5, '2024-02-13');
 
--- Creazione della tabella "genres"
-CREATE TABLE genres (
-    genre_id SERIAL PRIMARY KEY,
-    genre_name VARCHAR(100) NOT NULL
-);
 
--- Creazione della tabella "feedback"
-CREATE TABLE feedback (
-    feedback_id SERIAL PRIMARY KEY,
-    comment VARCHAR(250),
-    rating BIGINT,
-    publication_date DATE
-);
+-- Inserimenti nella tabella "books"
+INSERT INTO books (title, publication_year, genre_id, editor, publisher, pages, description, feedback_id) VALUES
+    ('Pride and Prejudice', '1813-01-01', 1, 'Regency Classics', 'Bennet Books', 279, 'A witty and romantic novel following the lives of the Bennet sisters in Regency England.', 1),
+    ('Crime and Punishment', '1866-01-01', 2, 'Russian Classics', 'St. Petersburg Press', 671, 'A psychological thriller exploring the consequences of a young man''s decision to commit murder.', 2),
+    ('Great Expectations', '1861-01-01', 1, 'Victorian Classics', 'London Books', 505, 'The coming-of-age story of the orphan Pip and his encounters with various characters in Victorian England.', 3),
+    ('One Hundred Years of Solitude', '1967-01-01', 4, 'Magical Realism Publications', 'Macondo Books', 417, 'The multi-generational saga of the Buendía family in Macondo.', 4),
+    ('1984', '1949-01-01', 5, 'Dystopian Classics', 'Oceania Publishing', 328, 'A warning about mass surveillance and the loss of individual freedom.', 5),
+    ('Harry Potter and the Philosopher''s Stone', '1997-01-01', 6, 'Wizarding World Books', 'Hogwarts Press', 320, 'Harry Potter''s first year at Hogwarts School of Witchcraft and Wizardry.', 6),
+    ('To Kill a Mockingbird', '1960-01-01', 1, 'Southern Classics', 'Maycomb Publishers', 399, 'A powerful exploration of racial injustice in the American South.', 7),
+    ('War and Peace', '1869-01-01', 2, 'Russian Classics', 'Imperial Press', 1225, 'Epic novel depicting Russian society during the Napoleonic era.', 8),
+    ('Mrs Dalloway', '1925-01-01', 4, 'Modernist Classics', 'London Society', 194, 'A day in the life of Clarissa Dalloway in post-World War I London.', 9),
+    ('The Lord of the Rings', '1954-01-01', 6, 'Fantasy Classics', 'Middle-earth Press', 1178, 'A fantasy epic following the quest to destroy the One Ring.', 10),
+    ('And Then There Were None', '1939-01-01', 1, 'Mystery Classics', 'Soldier Island Books', 264, 'A classic mystery novel with a deadly twist.', 11),
+    ('The Old Man and the Sea', '1952-01-01', 1, 'Hemingway Classics', 'Sea Venture Press', 127, 'The story of an aging Cuban fisherman and his battle with a giant marlin.', 12),
+    ('The Metamorphosis', '1915-01-01', 4, 'Existential Classics', 'Vermin Press', 55, 'The surreal tale of Gregor Samsa waking up transformed into a giant insect.', 13),
+    ('Wuthering Heights', '1847-01-01', 1, 'Gothic Classics', 'Moorside Books', 342, 'A dark and passionate tale of love and revenge on the Yorkshire moors.', 14),
+    ('The Adventures of Tom Sawyer', '1876-01-01', 7, 'Children''s Classics', 'Mississippi River Books', 216, 'The mischievous adventures of Tom Sawyer in the Mississippi River town of St. Petersburg.', 15),
+    ('Brave New World', '1932-01-01', 5, 'Dystopian Classics', 'Huxleyan Society', 311, 'A dystopian vision of a future society where individuality is sacrificed for stability.', 16),
+    ('Jane Eyre', '1847-01-01', 1, 'Victorian Classics', 'Thornfield Publishers', 503, 'The life and love story of the orphan Jane Eyre.', 17),
+    ('Rebecca', '1938-01-01', 4, 'Gothic Classics', 'Manderley Books', 386, 'A psychological thriller revolving around the mysterious death of the first wife, Rebecca.', 18),
+    ('The Great Gatsby', '1925-01-01', 1, 'Roaring Twenties Classics', 'East Egg Publishing', 180, 'A portrayal of the American Dream and the Roaring Twenties.', 19),
+    ('Fahrenheit 451', '1953-01-01', 5, 'Dystopian Classics', 'Fireman Press', 158, 'A dystopian future where books are banned and "firemen" burn any that are found.', 20),
+    ('The Picture of Dorian Gray', '1890-01-01', 1, 'Victorian Classics', 'Hedonist Press', 245, 'A Faustian tale of a man who remains young while his portrait ages.', 21),
+    ('The War of the Worlds', '1898-01-01', 3, 'Sci-Fi Classics', 'Martian Publishing', 288, 'The invasion of Earth by Martians and the ensuing panic.', 22),
+    ('The Handmaid''s Tale', '1985-01-01', 5, 'Dystopian Fiction', 'Gilead Books', 311, 'A dystopian world where women are property of the state.', 23),
+    ('A Song of Ice and Fire', '1996-01-01', 6, 'Fantasy Epic', 'Westeros Publishing', 694, 'Epic fantasy series with political intrigue, dragons, and the battle for the Iron Throne.', 24),
+    ('L''insostenibile leggerezza dell''essere', '1984-01-01', 1, 'Philosophical Classics', 'Prague Press', 365, 'A philosophical novel exploring the nature of existence and the consequences of choice.', 25),
+    ('Ulysses', '1922-01-01', 7, 'Modernist Classics', 'Dublin Books', 730, 'A modernist masterpiece depicting a day in the life of Leopold Bloom in Dublin.', 26),
+    ('Nel terrore di Arkham', '1928-01-01', 9, 'Weird Fiction', 'Arkham House', 320, 'A collection of cosmic horror tales set in the fictional town of Arkham.', 27),
+    ('Il visconte dimezzato', '1952-01-01', 1, 'Postmodernist Classics', 'Calvino Press', 180, 'An exploration of identity and existence in a whimsical narrative.', 28),
+    ('Le avventure di James e la pesca gigante', '1961-01-01', 7, 'Children''s Classics', 'Giant Peach Books', 231, 'A magical journey with James and his insect friends inside a giant peach.', 29),
+    ('La guida completa all''analisi tecnica', '2022-01-01', 6, 'Financial Guides', 'Market Mastery Press', 450, 'Manuale completo sull''analisi tecnica nel mondo finanziario.', 30),
+    ('I pilastri della Terra', '1989-01-01', 1, 'Historical Fiction', 'Cathedral Builders Press', 973, 'La costruzione di una cattedrale nel Medioevo e le vite intrecciate dei suoi abitanti.', 31),
+    ('La casa degli spiriti', '1982-01-01', 7, 'Magical Realism', 'Trueba Publishing', 368, 'La storia della famiglia Trueba in un realismo magico.', 32),
+    ('I versi satanici', '1988-01-01', 1, 'Magical Realism', 'Satanic Verses Publishing', 547, 'Una storia sull''identità e la fede in cui mitologia e realtà si intrecciano.', 33),
+    ('Qualcuno volò sul nido del cuculo', '1962-01-01', 1, 'Psychiatric Fiction', 'Cuckoo''s Nest Books', 320, 'La ribellione di un paziente contro l''autorità in una casa di cura.', 34),
+    ('La fonte meravigliosa', '1943-01-01', 1, 'Objectivist Fiction', 'Individualism Press', 754, 'Esplora le idee dell''individualismo e della ricerca del proprio bene.', 35),
+    ('Blade Runner', '1968-01-01', 6, 'Sci-Fi Classics', 'Replicant Press', 244, 'Il romanzo che ha ispirato il film di fantascienza "Blade Runner".', 36),
+    ('Mattatoio n. 5', '1969-01-01', 1, 'Postmodernist Classics', 'Slaughterhouse Books', 183, 'Un romanzo satirico sulla Seconda Guerra Mondiale e la Bomba di Dresda.', 37),
+    ('Furore', '1939-01-01', 1, 'American Classics', 'Dust Bowl Press', 464, 'La storia di una famiglia durante la Grande Depressione negli Stati Uniti.', 38),
+    ('A sangue freddo', '1966-01-01', 1, 'True Crime', 'Cold Blood Books', 343, 'Un resoconto dell''omicidio della famiglia Clutter nel Kansas.', 39),
+    ('Non lasciarmi', '2005-01-01', 5, 'Dystopian Fiction', 'Hailsham Press', 288, 'Una storia di amicizia e perdita in un mondo distopico.', 40),
+    ('La storia infinita', '1979-01-01', 6, 'Fantasy Classics', 'Fantasia Press', 445, 'Le avventure di Bastian nel fantastico mondo di Fantasia.', 41),
+    ('Blindness', '1995-01-01', 5, 'Dystopian Fiction', 'White Blindness Publications', 326, 'La società colpita da una improvvisa epidemia di cecità.', 42),
+    ('Arancia meccanica', '1962-01-01', 1, 'Dystopian Fiction', 'Ludovico Press', 213, 'La storia di Alex e la sua violenta società futuristicamente distopica.', 43),
+    ('Il cardellino', '2013-01-01', 1, 'Modern Fiction', 'Goldfinch Books', 771, 'La storia di Theo Decker e il quadro "Il cardellino" di Carel Fabritius.', 44),
+    ('Norwegian Wood', '1987-01-01', 1, 'Japanese Literature', 'Tokyo Press', 296, 'La nostalgia dell''amore giovanile nel Giappone degli anni ''60.', 45),
+    ('La montagna incantata', '1924-01-01', 1, 'German Literature', 'Magic Mountain Books', 706, 'Una narrazione ambientata in una clinica svizzera per malati di tubercolosi.', 46),
+    ('L''ignoranza', '2000-01-01', 1, 'Philosophical Fiction', 'Prague Press', 196, 'La storia di due emigranti cechi che ritornano in patria dopo decenni di esilio.', 47),
+    ('Trainspotting', '1993-01-01', 1, 'Scottish Fiction', 'Edinburgh Books', 446, 'La vita degli eroinomani nelle strade di Edimburgo.', 48),
+    ('Life of Pi', '2001-01-01', 7, 'Adventure Fiction', 'Pi Press', 336, 'La storia di Piscine Molitor Patel, naufrago sul Pacifico con una tigre di Bengala.', 49),
+    ('Mezzo giallo sole', '2006-01-01', 1, 'African Literature', 'Lagos Press', 543, 'Una storia che esplora la Nigeria post-coloniale attraverso le vite intrecciate di tre personaggi.', 50);
 
--- Creazione della tabella "books"
-CREATE TABLE books (
-    book_id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    author_id BIGINT,
-    publication_year BIGINT,
-    genre_id BIGINT,
-    editor VARCHAR(100),
-    publisher VARCHAR(100),
-    pages BIGINT,
-    description VARCHAR(250),
-    feedback_id BIGINT,
-    FOREIGN KEY (author_id) REFERENCES authors(author_id),
-    FOREIGN KEY (genre_id) REFERENCES genres(genre_id),
-    FOREIGN KEY (feedback_id) REFERENCES feedback(feedback_id)
-);
-
--- Ceazione della tabella "user_books"
-CREATE TABLE user_books (
-    assignment_id SERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
-    book_id BIGINT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES _user(user_id),
-    FOREIGN KEY (book_id) REFERENCES books(book_id)
-)
-
-
--- Authors Table
-INSERT INTO public.authors (birthdate, author_id, first_name, info, last_name, nationality)
-VALUES
-    ('1980-05-15', 1, 'John', 'Bestselling author known for mystery novels', 'Doe', 'American'),
-    ('1975-08-22', 2, 'Jane', 'Renowned poet and essayist', 'Smith', 'British'),
-    ('1990-03-10', 3, 'Michael', 'Science fiction writer with a focus on artificial intelligence', 'Johnson', 'Canadian'),
-    ('1985-11-05', 4, 'Emily', 'Historical fiction author specializing in medieval settings', 'Brown', 'Australian'),
-    ('1972-07-18', 5, 'Carlos', 'Author of contemporary novels exploring cultural diversity', 'Rodriguez', 'Spanish');
-
--- feedback Table
-INSERT INTO public.feedback (publication_date, feedback_id, rating, comment)
-VALUES
-    ('2022-01-31', 1, 5, 'Excellent read, couldn\t put it down!'),
-    ('2022-02-15', 2, 4, 'Poetry that speaks to the heart'),
-    ('2021-12-10', 3, 4, 'Mind-bending science fiction at its best'),
-    ('2023-03-05', 4, 5, 'Captivating journey through history'),
-    ('2023-06-20', 5, 4, 'Kept me on the edge of my seat from start to finish');
-
--- Genres Table
-INSERT INTO public.genres (genre_id, genre_name)
-VALUES
-    (1, 'Mystery'),
-    (2, 'Poetry'),
-    (3, 'Science Fiction'),
-    (4, 'Historical Fiction'),
-    (5, 'Thriller');
-
--- Books Table
-INSERT INTO public.books (publication_year, book_id, feedback_id, genre_id, pages, price, description, editor, publisher, title)
-VALUES
-    ('2022-01-31', 1, 1, 1, 300, 25, 'Exciting mystery novel', 'ABC Editors', 'XYZ Publishers', 'The Mysterious Case'),
-    ('2022-02-15', 2, 2, 2, 200, 20, 'Beautiful collection of poems', 'DEF Editors', 'LMN Publishers', 'Expressions of the Soul'),
-    ('2021-12-10', 3, 3, 3, 400, 30, 'Thrilling science fiction adventure', 'GHI Editors', 'OPQ Publishers', 'The Quantum Odyssey'),
-    ('2023-03-05', 4, 4, 4, 350, 28, 'Compelling historical fiction journey', 'JKL Editors', 'RST Publishers', 'Echoes of the Past'),
-    ('2023-06-20', 5, 5, 1, 250, 22, 'Intriguing mystery thriller', 'UVW Editors', 'XYZ Publishers', 'Shadows in the Dark');
-
--- Books_Authors Table
-INSERT INTO public.books_authors (authors_author_id, book_book_id)
-VALUES
+-- Inserimenti nella tabella "user_books"
+INSERT INTO books_authors (authors_author_id, book_book_id) VALUES
     (1, 1),
-    (2, 1),
-    (3, 2),
-    (4, 3),
-    (5, 4);
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+    (11, 11),
+    (12, 12),
+    (13, 13),
+    (14, 14),
+    (15, 15),
+    (16, 16),
+    (17, 17),
+    (18, 18),
+    (19, 19),
+    (20, 20),
+    (21, 21),
+    (22, 22),
+    (23, 23),
+    (24, 24),
+    (25, 25),
+    (26, 26),
+    (27, 27),
+    (28, 28),
+    (29, 29),
+    (30, 30),
+    (31, 31),
+    (32, 32),
+    (33, 33),
+    (34, 34),
+    (35, 35),
+    (36, 36),
+    (37, 37),
+    (38, 38),
+    (39, 39),
+    (40, 40),
+    (41, 41),
+    (42, 42),
+    (43, 43),
+    (44, 44),
+    (45, 45),
+    (46, 46),
+    (47, 47),
+    (48, 48),
+    (49, 49),
+    (50, 50);
