@@ -19,6 +19,7 @@ import com.generation.italy.library.model.entities.User;
 import javax.swing.text.html.Option;
 import java.security.Principal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class JPALibraryService implements LibraryService {
@@ -150,6 +151,19 @@ public class JPALibraryService implements LibraryService {
         return lb;
     }
 
-
+    @Override
+    public List<Book> getRandomBooksByGenre(long id, int limit) {
+        List<Book> booksL = bookRepository.findByGenreId(id);
+        if (booksL.size() <= limit) {
+            return booksL;
+        } else {
+            Random random = new Random();
+            return random.ints(0, booksL.size())
+                    .distinct()
+                    .limit(limit)
+                    .mapToObj(booksL::get)
+                    .collect(Collectors.toList());
+        }
+    }
 
 }

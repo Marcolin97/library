@@ -2,6 +2,7 @@ package com.generation.italy.library.api.restcontrollers;
 
 import com.generation.italy.library.dtos.BookDto;
 import com.generation.italy.library.model.entities.Book;
+import com.generation.italy.library.model.exceptions.NoSuchEntityException;
 import com.generation.italy.library.model.services.abstractions.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,16 @@ public class BookRestController {
                 .map(ResponseEntity::ok)
                 .findFirst()
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/four-books")
+    public ResponseEntity<List<Book>> getRandomBooksByGenre(@RequestParam long id, @RequestParam int limit) {
+        try {
+            List<Book> listB = libraryService.getRandomBooksByGenre(id, limit);
+            return ResponseEntity.ok(listB);
+        } catch(NoSuchEntityException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

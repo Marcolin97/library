@@ -29,4 +29,5 @@ public interface LibraryService {
     List<LibraryItem> getLibrary(Integer id);
     List<Book> getAllBooks();
     Optional<LibraryItem> deleteLibraryItem(long id);
+    List<Book> getRandomBooksByGenre(long id, int limit) throws NoSuchEntityException;
 }
